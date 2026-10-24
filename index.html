@@ -256,7 +256,7 @@
   .tier{display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding:11px 0;border-top:1px dashed rgba(232,228,238,.13)}
   .tier:last-child{border-bottom:1px dashed rgba(232,228,238,.13)}
   .tier span{font-size:14px;color:#c9c3d6}
-  .tier b{font-family:var(--serif);font-size:24px;font-weight:600;color:var(--accent);white-space:nowrap}
+  .tier b{font-family:var(--serif);font-size:24px;font-weight:600;color:var(--accent);white-space:nowrap;font-variant-numeric:lining-nums tabular-nums}
 
   .levels{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);margin-top:clamp(18px,2.4vw,28px)}
   @media (max-width:680px){.levels{grid-template-columns:1fr}}
@@ -274,11 +274,11 @@
   /* ---------- terms ---------- */
   .terms-top{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,80px)}
   @media (max-width:900px){.terms-top{grid-template-columns:1fr}}
-  .sub-h{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 18px}
+  .sub-h{font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 18px}
   .steps{list-style:none;margin:0;padding:0;counter-reset:s}
   .steps li{counter-increment:s;display:grid;grid-template-columns:44px 1fr;gap:4px 10px;padding:16px 0;border-top:1px solid var(--line)}
   .steps li:last-child{border-bottom:1px solid var(--line)}
-  .steps li::before{content:"0" counter(s);grid-row:1 / 3;font-family:var(--serif);font-size:20px;color:var(--accent-dim);line-height:1.2}
+  .steps li::before{content:"0" counter(s);grid-row:1 / 3;font-family:var(--serif);font-variant-numeric:lining-nums;font-size:20px;color:var(--accent-dim);line-height:1.2}
   .steps b{font-weight:600;font-size:14.5px}
   .steps span{font-size:14px;color:var(--muted);line-height:1.55}
   .ww{display:grid;grid-template-columns:1fr 1fr;gap:24px}
@@ -361,10 +361,10 @@
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <!-- СЛОТЫ: поменяйте числа в data-free / data-total -->
-      <div class="status" id="status" data-free="3" data-total="5">
+      <div class="status" id="status" data-free="2" data-total="5">
         <i class="dot"></i>
         <span data-en="Commissions open" data-ru="Заказы открыты">Commissions open</span>
-        <span class="slots" id="slots">· 3 of 5 slots</span>
+        <span class="slots" id="slots">· 2 of 5 slots</span>
       </div>
       <h1>Sherr</h1>
       <p class="tag" data-en="Digital illustrations and characters with a mood"
@@ -394,21 +394,21 @@
           <div class="eyebrow" data-en="Portfolio" data-ru="Портфолио">Portfolio</div>
           <h2 data-en="Works" data-ru="Работы">Works</h2>
         </div>
-        <p data-en="Characters, portraits and scenes. Click a piece to view it full size."
-           data-ru="Персонажи, портреты и&nbsp;сцены. Нажми на&nbsp;работу, чтобы открыть её целиком.">Characters, portraits and scenes. Click a piece to view it full size.</p>
+        <p data-en="Characters, portraits and scenes. Tap or click a piece to view it full size."
+           data-ru="Персонажи, портреты и&nbsp;сцены. Нажми на&nbsp;работу, чтобы открыть её целиком.">Characters, portraits and scenes. Tap or click a piece to view it full size.</p>
       </div>
 
       <!-- Порядок = порядок в сетке. Первые 8 видны сразу, с классом "more" — после кнопки -->
       <div class="gallery" id="gallery">
-        <figure class="g-item"><img src="assets/thumbs/w05.jpg" width="760" height="537" loading="lazy" decoding="async" data-full="assets/works/w05.jpg" alt="Illustration — warrior in a winged helmet"></figure>
-        <figure class="g-item"><img src="assets/thumbs/w01.jpg" width="760" height="450" loading="lazy" decoding="async" data-full="assets/works/w01.jpg" alt="Illustration — vampire in neon light"></figure>
         <figure class="g-item"><img src="assets/thumbs/w12.jpg" width="642" height="760" loading="lazy" decoding="async" data-full="assets/works/w12.jpg" alt="Illustration — elf, portrait and full figure"></figure>
         <figure class="g-item"><img src="assets/thumbs/w14.jpg" width="760" height="318" loading="lazy" decoding="async" data-full="assets/works/w14.jpg" alt="Illustration — sci-fi pair in the snow"></figure>
-        <figure class="g-item"><img src="assets/thumbs/w02.jpg" width="760" height="538" loading="lazy" decoding="async" data-full="assets/works/w02.jpg" alt="Illustration — hooded figure with a sparkler"></figure>
         <figure class="g-item"><img src="assets/thumbs/w10.jpg" width="760" height="537" loading="lazy" decoding="async" data-full="assets/works/w10.jpg" alt="Illustration — two characters with a wizard hat"></figure>
         <figure class="g-item"><img src="assets/thumbs/w08.jpg" width="760" height="536" loading="lazy" decoding="async" data-full="assets/works/w08.jpg" alt="Illustration — two silver-haired characters"></figure>
+        <figure class="g-item"><img src="assets/thumbs/w05.jpg" width="760" height="537" loading="lazy" decoding="async" data-full="assets/works/w05.jpg" alt="Illustration — warrior in a winged helmet"></figure>
         <figure class="g-item"><img src="assets/thumbs/w06.jpg" width="760" height="737" loading="lazy" decoding="async" data-full="assets/works/w06.jpg" alt="Illustration — reading a book"></figure>
-        <figure class="g-item more"><img src="assets/thumbs/w13.jpg" width="760" height="760" loading="lazy" decoding="async" data-full="assets/works/w13.jpg" alt="Illustration — sitting on the floor in soft light"></figure>
+        <figure class="g-item"><img src="assets/thumbs/w01.jpg" width="760" height="450" loading="lazy" decoding="async" data-full="assets/works/w01.jpg" alt="Illustration — vampire in neon light"></figure>
+        <figure class="g-item"><img src="assets/thumbs/w13.jpg" width="760" height="760" loading="lazy" decoding="async" data-full="assets/works/w13.jpg" alt="Illustration — sitting on the floor in soft light"></figure>
+        <figure class="g-item more"><img src="assets/thumbs/w02.jpg" width="760" height="538" loading="lazy" decoding="async" data-full="assets/works/w02.jpg" alt="Illustration — hooded figure with a sparkler"></figure>
         <figure class="g-item more"><img src="assets/thumbs/w09.jpg" width="538" height="760" loading="lazy" decoding="async" data-full="assets/works/w09.jpg" alt="Illustration — eating watermelon"></figure>
         <figure class="g-item more"><img src="assets/thumbs/w03.jpg" width="537" height="760" loading="lazy" decoding="async" data-full="assets/works/w03.jpg" alt="Illustration — in sunglasses, in the park"></figure>
         <figure class="g-item more"><img src="assets/thumbs/w04.jpg" width="608" height="760" loading="lazy" decoding="async" data-full="assets/works/w04.jpg" alt="Illustration — lying on the floor in a beam of light"></figure>
@@ -436,8 +436,8 @@
       <!-- ЦЕНЫ: data-usd — английская версия, data-rub — русская -->
       <div class="cards">
         <article class="card">
-          <button class="card-ex" type="button" data-open="assets/works/w01.jpg" aria-label="Open example">
-            <img src="assets/thumbs/w01.jpg" width="760" height="450" loading="lazy" alt="Bust example">
+          <button class="card-ex" type="button" data-open="assets/works/w12.jpg" aria-label="Open example">
+            <img src="assets/thumbs/w12.jpg" width="642" height="760" loading="lazy" alt="Bust example" style="object-position:30% 30%">
             <span class="ex-label" data-en="Example" data-ru="Пример">Example</span>
           </button>
           <div class="card-body">
@@ -534,8 +534,8 @@
               <span data-en="I send the sketch for approval. Two free revisions at this stage."
                     data-ru="Присылаю скетч на&nbsp;согласование. На&nbsp;этом этапе — 2&nbsp;бесплатные правки.">I send the sketch for approval. Two free revisions at this stage.</span></li>
             <li><b data-en="Delivery" data-ru="Финал">Delivery</b>
-              <span data-en="Final PNG or JPG at 300 dpi. The .clip source file on request."
-                    data-ru="Готовый PNG или JPG, 300&nbsp;dpi. Исходник .clip — по&nbsp;запросу.">Final PNG or JPG at 300 dpi. The .clip source file on request.</span></li>
+              <span data-en="Final PNG or JPG. The .clip source file on request."
+                    data-ru="Готовый PNG или JPG. Исходник .clip — по&nbsp;запросу.">Final PNG or JPG. The .clip source file on request.</span></li>
           </ol>
         </div>
 
@@ -554,10 +554,8 @@
           <div>
             <h3 class="sub-h" data-en="I don&rsquo;t draw" data-ru="Не рисую">I don&rsquo;t draw</h3>
             <ul class="no">
-              <li data-en="Complex mecha and vehicles" data-ru="Сложных мехов и&nbsp;технику">Complex mecha and vehicles</li>
-              <li data-en="Hateful or offensive content" data-ru="Контент с&nbsp;ненавистью и&nbsp;оскорблениями">Hateful or offensive content</li>
-              <li data-en="Art for NFTs or AI training" data-ru="Арт для NFT и&nbsp;обучения ИИ">Art for NFTs or AI training</li>
-              <li data-en="Copies of other artists&rsquo; styles" data-ru="Копии стиля других художников">Copies of other artists&rsquo; styles</li>
+              <li data-en="Mecha and vehicles" data-ru="Меха и&nbsp;технику">Mecha and vehicles</li>
+              <li data-en="Gore" data-ru="Гуро">Gore</li>
             </ul>
           </div>
         </div>
@@ -566,18 +564,13 @@
       <div class="faq">
         <details>
           <summary data-en="How long does it take?" data-ru="Сколько ждать?">How long does it take?</summary>
-          <p data-en="Usually 1–3 weeks depending on the size and the queue. I&rsquo;ll give you an exact deadline before payment."
-             data-ru="Обычно 1–3 недели в&nbsp;зависимости от&nbsp;размера и&nbsp;очереди. Точный срок называю до&nbsp;оплаты.">Usually 1–3 weeks depending on the size and the queue. I&rsquo;ll give you an exact deadline before payment.</p>
+          <p data-en="Usually 2–4 weeks depending on the size and the queue. I&rsquo;ll give you an exact deadline before payment."
+             data-ru="Обычно 2–4 недели в&nbsp;зависимости от&nbsp;размера и&nbsp;очереди. Точный срок называю до&nbsp;оплаты.">Usually 2–4 weeks depending on the size and the queue. I&rsquo;ll give you an exact deadline before payment.</p>
         </details>
         <details>
           <summary data-en="What about revisions?" data-ru="Что с&nbsp;правками?">What about revisions?</summary>
           <p data-en="Two free revisions at the sketch stage. Small fixes after colouring are fine; big changes at that point are paid extra."
              data-ru="Две бесплатные правки на&nbsp;этапе скетча. Мелкие поправки после покраски — без проблем, крупные изменения на&nbsp;этом этапе оплачиваются отдельно.">Two free revisions at the sketch stage. Small fixes after colouring are fine; big changes at that point are paid extra.</p>
-        </details>
-        <details>
-          <summary data-en="Can I get a refund?" data-ru="Можно вернуть деньги?">Can I get a refund?</summary>
-          <p data-en="Full refund before I start the sketch, 50% after the sketch is done. No refunds once colouring has started."
-             data-ru="Полный возврат — до&nbsp;начала скетча, 50% — после готового скетча. После начала покраски возврата нет.">Full refund before I start the sketch, 50% after the sketch is done. No refunds once colouring has started.</p>
         </details>
         <details>
           <summary data-en="How can I use the art?" data-ru="Как можно использовать арт?">How can I use the art?</summary>
@@ -591,8 +584,8 @@
         </details>
         <details>
           <summary data-en="How do I pay?" data-ru="Как оплатить?">How do I pay?</summary>
-          <p data-en="100% upfront after we agree on the details. I&rsquo;ll send payment options in DMs."
-             data-ru="100% предоплата после согласования деталей. Способы оплаты пришлю в&nbsp;личных сообщениях.">100% upfront after we agree on the details. I&rsquo;ll send payment options in DMs.</p>
+          <p data-en="International clients pay via Boosty, 100% upfront once we agree on the details."
+             data-ru="100% предоплата после согласования деталей. Способы оплаты пришлю в&nbsp;личных сообщениях.">International clients pay via Boosty, 100% upfront once we agree on the details.</p>
         </details>
       </div>
     </div>
