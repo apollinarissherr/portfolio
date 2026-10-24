@@ -1,15 +1,20 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SHERR — иллюстрации и персонажи</title>
-<meta name="description" content="SHERR — иллюстратор. Тёмное фэнтези, персонажи, атмосферные сцены. Коммишки открыты.">
-<meta property="og:title" content="SHERR — иллюстрации и персонажи">
-<meta property="og:description" content="Тёмное фэнтези, персонажи, атмосферные сцены. Коммишки открыты.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>document.documentElement.className += " js";</script>
+<title>SHERR — illustration &amp; characters</title>
+<meta name="description" content="SHERR (Polina Sherr) — digital illustrations and characters. Portraits, half body and full body. Commissions open.">
+<meta property="og:title" content="SHERR — illustration &amp; characters">
+<meta property="og:description" content="Digital illustrations and characters. Commissions open.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="assets/works/w06.jpg">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%230f0e11'/%3E%3Ctext x='50' y='72' font-size='62' font-family='Georgia,serif' fill='%23a894c9' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E">
+<meta property="og:image" content="https://apollinarissherr.github.io/portfolio/assets/works/w01.jpg">
+<meta property="og:url" content="https://apollinarissherr.github.io/portfolio/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://apollinarissherr.github.io/portfolio/">
+<meta name="theme-color" content="#0f0e11">
+<link rel="icon" type="image/png" href="assets/stickers/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -24,8 +29,9 @@
     --accent-dim:#a190c0;
     --serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
     --sans:"Manrope",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-    --pad:clamp(20px,5vw,72px);
-    --max:1240px;
+    --pad:clamp(18px,3.6vw,56px);
+    --max:1800px;
+    --gap:clamp(10px,1.1vw,18px);
   }
   *,*::before,*::after{box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -40,80 +46,92 @@
   ::selection{background:var(--accent);color:#0f0e11}
 
   .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
-  .eyebrow{
-    font-size:11px;letter-spacing:.22em;text-transform:uppercase;
-    color:var(--muted);font-weight:500;
-  }
+  .eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);font-weight:500}
 
   /* ---------- nav ---------- */
   .nav{
-    position:fixed;inset:0 0 auto 0;z-index:60;
+    position:fixed;top:0;left:0;right:0;z-index:60;
     display:flex;align-items:center;justify-content:space-between;gap:24px;
     padding:14px var(--pad);
-    transition:background .35s ease,border-color .35s ease,padding .35s ease;
-    border-bottom:1px solid transparent;
+    padding-top:max(14px,env(safe-area-inset-top));
+    background:none;
   }
-  .nav.scrolled{
-    background:rgba(15,14,17,.82);backdrop-filter:blur(14px);
-    border-bottom-color:var(--line);padding-top:10px;padding-bottom:10px;
+  .nav::before{
+    content:"";position:absolute;left:0;right:0;top:0;bottom:-44px;z-index:-1;pointer-events:none;
+    background:linear-gradient(rgba(13,12,16,.95) 0%,rgba(13,12,16,.88) 52%,rgba(13,12,16,.52) 78%,rgba(13,12,16,0) 100%);
+    -webkit-backdrop-filter:blur(6px);
+    backdrop-filter:blur(6px);
   }
-  .brand{font-family:var(--serif);font-size:26px;letter-spacing:.14em}
+  .brand{font-family:var(--serif);font-size:25px;letter-spacing:.14em;line-height:1}
   .brand span{color:var(--accent)}
-  .nav-links{display:flex;align-items:center;gap:28px}
-  .nav-links a{
-    font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
-    transition:color .2s;
-  }
+  .nav-links{display:flex;align-items:center;gap:26px}
+  .nav-links a{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);transition:color .2s}
   .nav-links a:hover{color:var(--ink)}
-  .lang{
-    display:flex;align-items:center;gap:2px;
-    border:1px solid var(--line);border-radius:100px;padding:3px;
-  }
+  .lang{display:flex;align-items:center;gap:2px;border:1px solid var(--line);border-radius:100px;padding:3px}
   .lang button{
     font:inherit;font-size:11px;letter-spacing:.1em;background:none;border:0;color:var(--muted);
     padding:4px 10px;border-radius:100px;cursor:pointer;transition:.2s;
   }
   .lang button.on{background:var(--accent);color:#0f0e11;font-weight:600}
-  @media (max-width:760px){
+  @media (max-width:860px){
     .nav-links a:not(.cta-mini){display:none}
-    .brand{font-size:22px}
+    .nav-links a.mob{display:inline-block;font-size:11px;letter-spacing:.08em;color:var(--muted)}
+    .nav-links{gap:12px}
+    .brand{font-size:21px}
+    .cta-mini{font-size:11px;letter-spacing:.08em}
+  }
+  @media (max-width:480px){
+    .nav{gap:10px}
+    .brand{font-size:19px;letter-spacing:.1em}
+    .nav-links{gap:10px}
+    .nav-links a.mob,.nav-links a.cta-mini{font-size:10px;letter-spacing:.04em}
+    .lang{padding:2px}
+    .lang button{padding:4px 7px;font-size:10px}
+  }
+  @media (max-width:370px){
+    .nav-links a.mob[href="#works"]{display:none}
   }
 
   /* ---------- hero ---------- */
   .hero{
     position:relative;min-height:100svh;display:flex;align-items:flex-end;
-    padding:120px 0 clamp(40px,7vh,80px);overflow:hidden;
+    padding:130px 0 clamp(36px,6vh,72px);overflow:hidden;
   }
   .hero-bg{position:absolute;inset:0;z-index:0}
-  .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:50% 38%;opacity:.55;filter:saturate(.9)}
+  .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:64% 55%;opacity:.66}
   .hero-bg::after{
     content:"";position:absolute;inset:0;
     background:
-      linear-gradient(180deg,rgba(15,14,17,.92) 0%,rgba(15,14,17,.35) 35%,rgba(15,14,17,.75) 78%,var(--bg) 100%),
-      radial-gradient(120% 80% at 15% 100%,rgba(125,108,158,.22),transparent 60%);
+      linear-gradient(180deg,rgba(15,14,17,.9) 0%,rgba(15,14,17,.25) 34%,rgba(15,14,17,.78) 76%,var(--bg) 100%),
+      linear-gradient(90deg,rgba(15,14,17,.85) 0%,rgba(15,14,17,.15) 62%),
+      radial-gradient(120% 80% at 12% 100%,rgba(125,108,158,.2),transparent 62%);
   }
   .hero .wrap{position:relative;z-index:1;width:100%}
   .status{
     display:inline-flex;align-items:center;gap:9px;
     font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);
     border:1px solid rgba(168,148,201,.35);border-radius:100px;padding:6px 14px 6px 12px;
-    background:rgba(168,148,201,.07);margin-bottom:26px;
+    background:rgba(168,148,201,.07);margin-bottom:24px;
   }
-  .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 rgba(168,148,201,.7);animation:pulse 2.4s infinite}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:pulse 2.4s infinite}
   @keyframes pulse{70%{box-shadow:0 0 0 9px rgba(168,148,201,0)}100%{box-shadow:0 0 0 0 rgba(168,148,201,0)}}
   .hero h1{
-    font-size:clamp(76px,17vw,220px);letter-spacing:.02em;line-height:.82;
-    text-transform:uppercase;margin:0 0 10px -4px;
+    font-size:clamp(70px,16vw,230px);letter-spacing:.02em;line-height:.82;
+    text-transform:uppercase;margin:0 0 14px -4px;
     text-shadow:0 18px 60px rgba(0,0,0,.55),0 2px 24px rgba(0,0,0,.35);
   }
   .hero .tag{
-    font-family:var(--serif);font-style:italic;font-size:clamp(21px,3.1vw,36px);
-    color:#cfc7dd;max-width:24ch;margin-bottom:34px;
+    font-family:var(--serif);font-style:italic;font-size:clamp(20px,2.7vw,34px);
+    color:#d3cbe0;max-width:26ch;margin-bottom:32px;line-height:1.25;
   }
-  .hero-actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+  html[lang="en"] .card .sub{display:none}
+  html[lang="en"] .card h3{margin-bottom:20px}
+  @media (max-width:860px){ .gallery{columns:2} }
+  @media (max-width:560px){ .gallery{columns:1} }
+  .hero-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
   .btn{
-    display:inline-flex;align-items:center;gap:10px;font-size:13px;letter-spacing:.1em;
-    text-transform:uppercase;padding:15px 30px;border-radius:100px;border:1px solid transparent;
+    display:inline-flex;align-items:center;gap:10px;font-size:12.5px;letter-spacing:.1em;
+    text-transform:uppercase;padding:15px 28px;border-radius:100px;border:1px solid transparent;
     transition:transform .25s ease,background .25s ease,color .25s ease,border-color .25s;
   }
   .btn:hover{transform:translateY(-2px)}
@@ -121,44 +139,51 @@
   .btn-solid:hover{background:#bda9dd}
   .btn-ghost{border-color:rgba(232,228,238,.28);color:var(--ink)}
   .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
-  .hero-meta{
-    display:flex;flex-wrap:wrap;gap:8px 30px;margin-top:44px;padding-top:22px;
-    border-top:1px solid var(--line);font-size:12px;letter-spacing:.06em;color:var(--muted);
+  .hero-actions{margin-bottom:0}
+  @media (max-width:600px){
+    .hero{min-height:92svh;padding-top:104px}
+    .hero-bg img{object-position:64% 52%}
   }
-  .hero-meta b{color:var(--ink);font-weight:500}
 
   /* ---------- sections ---------- */
-  section{position:relative}
-  .sec{padding:clamp(64px,10vw,130px) 0}
-  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-bottom:clamp(28px,4vw,52px)}
-  .sec-head h2{font-size:clamp(38px,5.6vw,74px);letter-spacing:.01em}
-  .sec-head p{max-width:38ch;color:var(--muted);font-size:14.5px;margin:0}
-  .rule{height:1px;background:var(--line);border:0;margin:0}
+  .sec{padding:clamp(56px,8vw,120px) 0}
+  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-bottom:clamp(24px,3.4vw,46px)}
+  .sec-head h2{font-size:clamp(38px,5.2vw,76px);letter-spacing:.01em}
+  .sec-head p{max-width:40ch;color:var(--muted);font-size:14.5px;margin:0}
+  @media (max-width:720px){
+    .sec-head{display:block}
+    .sec-head p{margin-top:14px}
+  }
 
   /* ---------- gallery ---------- */
-  .gallery{columns:3;column-gap:clamp(12px,1.6vw,22px)}
-  @media (max-width:900px){.gallery{columns:2}}
-  @media (max-width:520px){.gallery{columns:1}}
+  .gallery{columns:3;column-gap:var(--gap)}
+  .gallery .g-item{margin:0 0 var(--gap)}
+  .js .gallery{columns:auto;display:block;position:relative;min-height:200px}
   .g-item{
-    break-inside:avoid;margin:0 0 clamp(12px,1.6vw,22px);position:relative;
-    cursor:zoom-in;overflow:hidden;border-radius:3px;background:var(--bg-soft);
-    opacity:0;transform:translateY(18px);
+    display:block;break-inside:avoid;margin:0;
+    position:relative;cursor:zoom-in;overflow:hidden;
+    border-radius:3px;background:var(--bg-soft);
   }
-  .g-item.in{opacity:1;transform:none;transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
-  .g-item img{width:100%;height:auto;transition:transform .7s cubic-bezier(.2,.7,.2,1),filter .4s}
-  .g-item:hover img{transform:scale(1.035);filter:brightness(1.06)}
-  .g-item::after{
-    content:"";position:absolute;inset:0;border:1px solid rgba(232,228,238,0);transition:border-color .3s;
+  .js .g-item{position:absolute;left:0;top:0;margin:0}
+  .g-item img{
+    display:block;width:100%;height:100%;object-fit:cover;
+    transition:transform .7s cubic-bezier(.2,.7,.2,1),filter .4s;
   }
+  .g-item:hover img{transform:scale(1.03);filter:brightness(1.06)}
+  .g-item::after{content:"";position:absolute;inset:0;border:1px solid rgba(232,228,238,0);transition:border-color .3s;pointer-events:none}
   .g-item:hover::after{border-color:rgba(168,148,201,.55)}
 
   /* ---------- lightbox ---------- */
   .lb{
     position:fixed;inset:0;z-index:100;display:none;place-items:center;
-    background:rgba(9,8,11,.96);backdrop-filter:blur(8px);padding:clamp(12px,4vw,56px);
+    background:rgba(9,8,11,.96);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+    padding:clamp(10px,4vw,56px);
   }
   .lb.open{display:grid}
-  .lb img{max-width:100%;max-height:100%;object-fit:contain;box-shadow:0 30px 90px rgba(0,0,0,.6)}
+  .lb img{max-width:100%;max-height:100%;object-fit:contain;box-shadow:0 30px 90px rgba(0,0,0,.6);
+    opacity:0;transform:scale(.985);
+    transition:opacity .55s ease,transform .75s cubic-bezier(.2,.7,.2,1)}
+  .lb img.show{opacity:1;transform:none}
   .lb button{
     position:absolute;background:rgba(232,228,238,.06);border:1px solid var(--line);color:var(--ink);
     width:46px;height:46px;border-radius:50%;cursor:pointer;display:grid;place-items:center;
@@ -173,42 +198,44 @@
     font-size:11px;letter-spacing:.22em;color:#cfc9dc;
     background:rgba(9,8,11,.72);border:1px solid var(--line);border-radius:100px;padding:5px 14px;
   }
+  @media (max-width:560px){
+    .lb-prev,.lb-next{width:40px;height:40px;bottom:16px;top:auto;transform:none}
+    .lb-prev{left:18px}
+    .lb-next{right:18px}
+    .lb-count{bottom:22px;font-size:10px}
+  }
 
   /* ---------- commissions ---------- */
   .comm{background:linear-gradient(180deg,var(--bg) 0%,#131118 50%,var(--bg) 100%)}
-  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,2vw,22px)}
-  @media (max-width:880px){.cards{grid-template-columns:1fr}}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap)}
+  @media (max-width:900px){.cards{grid-template-columns:1fr}}
   .card{
-    border:1px solid var(--line);border-radius:4px;padding:clamp(22px,3vw,34px);
+    border:1px solid var(--line);border-radius:4px;padding:clamp(20px,2.4vw,32px);
     background:rgba(255,255,255,.015);transition:border-color .3s,transform .3s,background .3s;
     display:flex;flex-direction:column;
   }
   .card:hover{border-color:rgba(168,148,201,.5);transform:translateY(-3px);background:rgba(168,148,201,.04)}
-  .card h3{font-size:clamp(26px,3.4vw,34px);letter-spacing:.04em;text-transform:uppercase}
-  .card .sub{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:6px 0 22px}
+  .card h3{font-size:clamp(25px,2.8vw,32px);letter-spacing:.04em;text-transform:uppercase}
+  .card .sub{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:6px 0 20px}
   .tier{display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding:11px 0;border-top:1px dashed rgba(232,228,238,.13)}
   .tier:last-of-type{border-bottom:1px dashed rgba(232,228,238,.13)}
   .tier span{font-size:14px;color:#c9c3d6}
   .tier b{font-family:var(--serif);font-size:23px;font-weight:600;color:var(--accent);white-space:nowrap}
-  .tier b small{font-family:var(--sans);font-size:12px;font-weight:400;color:var(--muted);margin-left:2px}
-  .card .note{margin-top:auto;padding-top:20px;font-size:12.5px;color:var(--muted)}
+  .card .note{margin-top:auto;padding-top:18px;font-size:12.5px;color:var(--muted)}
   .comm-foot{
-    display:flex;flex-wrap:wrap;gap:18px 30px;align-items:center;justify-content:space-between;
-    margin-top:clamp(26px,4vw,44px);padding-top:26px;border-top:1px solid var(--line);
+    display:flex;flex-wrap:wrap;gap:14px 30px;align-items:center;justify-content:space-between;
+    margin-top:clamp(22px,3vw,36px);padding-top:22px;border-top:1px solid var(--line);
   }
-  .comm-foot p{margin:0;color:var(--muted);font-size:14px;max-width:52ch}
-  .dl{display:flex;gap:10px;flex-wrap:wrap}
-  .dl a{
-    font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:10px 18px;
-    border:1px solid var(--line);border-radius:100px;color:var(--muted);transition:.25s;
-  }
-  .dl a:hover{color:var(--ink);border-color:var(--accent)}
+  .comm-foot p{margin:0;color:var(--muted);font-size:14px;max-width:70ch}
+  .comm-foot .pay{font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);white-space:nowrap}
+  .rate-note{display:none;margin-top:12px;font-size:12px;color:#8b8499}
+  html[lang="ru"] .rate-note{display:block}
 
   /* ---------- process ---------- */
-  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,3vw,34px);counter-reset:s}
-  @media (max-width:880px){.steps{grid-template-columns:1fr 1fr}}
-  @media (max-width:480px){.steps{grid-template-columns:1fr}}
-  .step{counter-increment:s;padding-top:20px;border-top:1px solid var(--line)}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,2.4vw,34px);counter-reset:s}
+  @media (max-width:900px){.steps{grid-template-columns:1fr 1fr}}
+  @media (max-width:520px){.steps{grid-template-columns:1fr}}
+  .step{counter-increment:s;padding-top:18px;border-top:1px solid var(--line)}
   .step::before{
     content:"0" counter(s);display:block;font-family:var(--serif);font-size:15px;
     color:var(--accent-dim);letter-spacing:.1em;margin-bottom:10px;
@@ -217,40 +244,56 @@
   .step p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.55}
 
   /* ---------- about ---------- */
-  .about{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(28px,6vw,90px);align-items:start}
+  .about{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(26px,5vw,80px);align-items:start}
   @media (max-width:860px){.about{grid-template-columns:1fr}}
-  .about-art{border-radius:3px;overflow:hidden;border:1px solid var(--line)}
+  .about-art{border-radius:3px;border:1px solid var(--line)}
   .about-art img{width:100%;height:auto}
-  .about-copy p{color:#bdb6cb;margin:0 0 18px;font-size:15.5px;max-width:52ch}
-  .about-copy .lead{font-family:var(--serif);font-size:clamp(22px,2.6vw,30px);line-height:1.35;color:var(--ink);font-style:italic}
-  .facts{display:grid;grid-template-columns:1fr 1fr;gap:18px 26px;margin-top:32px;padding-top:26px;border-top:1px solid var(--line)}
+  .about-copy p{color:#bdb6cb;margin:0 0 16px;font-size:15.5px;max-width:56ch}
+  .about-copy .lead{font-family:var(--serif);font-size:clamp(22px,2.4vw,30px);line-height:1.35;color:var(--ink);font-style:italic}
+  .fact-list{display:grid;grid-template-columns:1fr 1fr;gap:16px 26px;margin:28px 0 0;padding-top:24px;border-top:1px solid var(--line)}
+  .fact{margin:0}
   .fact dt{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-dim);margin-bottom:4px}
   .fact dd{margin:0;font-size:14.5px;color:#cfc9dc}
-  .fact{margin:0}
+  .age{display:inline-block;margin-top:24px;font-size:11px;letter-spacing:.16em;color:#8b8499;border:1px solid var(--line);border-radius:100px;padding:4px 12px}
+
+  /* ---------- stickers ---------- */
+  .sticker{
+    position:absolute;z-index:3;pointer-events:none;user-select:none;
+    width:clamp(84px,8.5vw,122px);height:auto;
+    filter:drop-shadow(0 16px 30px rgba(0,0,0,.55));
+  }
+  .about-art{position:relative}
+  .about-art img{border-radius:3px}
+  .about-art .sticker{left:-20px;bottom:-26px;transform:rotate(-8deg);width:clamp(84px,8.5vw,122px);height:auto}
+  .contact .wrap{position:relative}
+  .contact .sticker{right:3%;top:-26px;transform:rotate(9deg);width:clamp(68px,6.5vw,100px)}
+  @media (max-width:860px){
+    .about-art .sticker{width:80px;left:-8px;bottom:-18px}
+  }
+  @media (max-width:720px){
+    .contact .sticker{display:none}
+  }
 
   /* ---------- contact ---------- */
   .contact{border-top:1px solid var(--line);background:radial-gradient(90% 120% at 50% 0%,rgba(125,108,158,.16),transparent 65%)}
-  .contact h2{font-size:clamp(44px,8vw,110px);text-transform:uppercase;letter-spacing:.02em;line-height:.9}
+  .contact h2{font-size:clamp(42px,7.4vw,104px);text-transform:uppercase;letter-spacing:.02em;line-height:.92}
   .contact h2 em{font-style:italic;color:var(--accent);text-transform:none}
-  .links{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:clamp(30px,5vw,54px)}
-  @media (max-width:880px){.links{grid-template-columns:1fr 1fr}}
-  @media (max-width:480px){.links{grid-template-columns:1fr}}
+  .links{display:grid;gap:12px;margin-top:clamp(28px,4vw,48px);grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
   .link{
     display:flex;align-items:center;justify-content:space-between;gap:12px;
-    padding:20px 22px;border:1px solid var(--line);border-radius:4px;
+    padding:18px 20px;border:1px solid var(--line);border-radius:4px;
     transition:.28s;background:rgba(255,255,255,.012);
   }
   .link:hover{border-color:var(--accent);background:rgba(168,148,201,.07);transform:translateY(-2px)}
   .link .n{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
-  .link .h{font-size:15px;margin-top:3px}
-  .link .ar{color:var(--accent);font-size:18px;transition:transform .28s}
+  .link .h{font-size:15px;margin-top:3px;word-break:break-word}
+  .link .ar{color:var(--accent);font-size:18px;transition:transform .28s;flex:none}
   .link:hover .ar{transform:translate(3px,-3px)}
-  footer{padding:34px 0 40px;border-top:1px solid var(--line);font-size:12.5px;color:#918a9e}
+  footer{padding:30px 0 38px;border-top:1px solid var(--line);font-size:12.5px;color:#918a9e}
   footer .wrap{display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between;align-items:center}
 
   @media (prefers-reduced-motion:reduce){
     *,*::before,*::after{animation:none!important;transition:none!important}
-    .g-item{opacity:1;transform:none}
     html{scroll-behavior:auto}
   }
 </style>
@@ -260,36 +303,31 @@
 <nav class="nav" id="nav">
   <a class="brand" href="#top">SHERR<span>.</span></a>
   <div class="nav-links">
-    <a href="#works" data-ru="Работы" data-en="Works">Работы</a>
-    <a href="#commissions" data-ru="Коммишки" data-en="Commissions">Коммишки</a>
-    <a href="#process" data-ru="Как я работаю" data-en="Process">Как я работаю</a>
-    <a href="#about" data-ru="Обо мне" data-en="About">Обо мне</a>
-    <a href="#contact" class="cta-mini" data-ru="Заказать" data-en="Order">Заказать</a>
+    <a href="#works" class="mob" data-en="Works" data-ru="Работы">Works</a>
+    <a href="#commissions" class="mob" data-en="Prices" data-ru="Прайс">Prices</a>
+    <a href="#process" data-en="Process" data-ru="Как я работаю">Process</a>
+    <a href="#about" data-en="About" data-ru="Обо мне">About</a>
+    <a href="#contact" class="cta-mini" data-en="Order" data-ru="Заказать">Order</a>
     <div class="lang" role="group" aria-label="Language">
-      <button type="button" data-lang="ru" class="on">RU</button>
-      <button type="button" data-lang="en">EN</button>
+      <button type="button" data-lang="ru">RU</button>
+      <button type="button" data-lang="en" class="on">EN</button>
     </div>
   </div>
 </nav>
 
 <header class="hero" id="top">
-  <div class="hero-bg"><img src="assets/works/w06.jpg" alt="" fetchpriority="high"></div>
+  <div class="hero-bg"><img src="assets/hero.jpg" alt="" fetchpriority="high"></div>
   <div class="wrap">
     <div class="status">
       <i class="dot"></i>
-      <span data-ru="Коммишки открыты" data-en="Commissions open">Коммишки открыты</span>
+      <span data-en="Commissions open" data-ru="Коммишки открыты">Commissions open</span>
     </div>
     <h1>SHERR</h1>
-    <p class="tag" data-ru="Иллюстрации, персонажи и&nbsp;атмосфера тёмного фэнтези"
-       data-en="Illustration, characters and&nbsp;the mood of dark fantasy">Иллюстрации, персонажи и&nbsp;атмосфера тёмного фэнтези</p>
+    <p class="tag" data-en="Digital illustrations and characters"
+       data-ru="Цифровые иллюстрации и&nbsp;персонажи">Digital illustrations and characters</p>
     <div class="hero-actions">
-      <a class="btn btn-solid" href="#commissions" data-ru="Прайс и&nbsp;условия" data-en="Prices &amp; terms">Прайс и&nbsp;условия</a>
-      <a class="btn btn-ghost" href="#works" data-ru="Смотреть работы" data-en="View works">Смотреть работы</a>
-    </div>
-    <div class="hero-meta">
-      <span><b data-ru="Скетч · флэт · рендер" data-en="Sketch · flat · render">Скетч · флэт · рендер</b></span>
-      <span data-ru="Бюст, полурост, полный рост" data-en="Bust, half body, full body">Бюст, полурост, полный рост</span>
-      <span data-ru="Clip Studio Paint" data-en="Clip Studio Paint">Clip Studio Paint</span>
+      <a class="btn btn-solid" href="#commissions" data-en="Prices &amp; terms" data-ru="Прайс и&nbsp;условия">Prices &amp; terms</a>
+      <a class="btn btn-ghost" href="#works" data-en="View works" data-ru="Смотреть работы">View works</a>
     </div>
   </div>
 </header>
@@ -300,29 +338,28 @@
     <div class="wrap">
       <div class="sec-head">
         <div>
-          <div class="eyebrow" style="margin-bottom:14px" data-ru="Избранное" data-en="Selected">Избранное</div>
-          <h2 data-ru="Работы" data-en="Works">Работы</h2>
+          <div class="eyebrow" style="margin-bottom:14px" data-en="Selected" data-ru="Избранное">Selected</div>
+          <h2 data-en="Works" data-ru="Работы">Works</h2>
         </div>
-        <p data-ru="Персонажи, портреты и сцены. Нажми на работу, чтобы открыть её целиком."
-           data-en="Characters, portraits and scenes. Click a piece to view it full size.">Персонажи, портреты и сцены. Нажми на работу, чтобы открыть её целиком.</p>
+        <p data-en="Characters, portraits and scenes. Click a piece to view it full size."
+           data-ru="Персонажи, портреты и сцены. Нажми на работу, чтобы открыть её целиком.">Characters, portraits and scenes. Click a piece to view it full size.</p>
       </div>
 
       <div class="gallery" id="gallery">
-        <figure class="g-item"><img src="assets/thumbs/w01.jpg" data-full="assets/works/w01.jpg" alt="Иллюстрация — персонаж, рендер" loading="lazy"></figure>
-        <figure class="g-item"><img src="assets/thumbs/w02.jpg" data-full="assets/works/w02.jpg" alt="Иллюстрация — неоновый портрет" loading="lazy"></figure>
-        <figure class="g-item"><img src="assets/thumbs/w03.jpg" data-full="assets/works/w03.jpg" alt="Иллюстрация — персонаж в смокинге" loading="lazy"></figure>
-        <figure class="g-item"><img src="assets/thumbs/w04.jpg" data-full="assets/works/w04.jpg" alt="Иллюстрация — неоновая сцена" loading="lazy"></figure>
-        <figure class="g-item"><img src="assets/thumbs/w06.jpg" data-full="assets/works/w06.jpg" alt="Иллюстрация — ангел, гризайль" loading="lazy"></figure>
-        <figure class="g-item"><img src="assets/thumbs/w07.jpg" data-full="assets/works/w07.jpg" alt="Иллюстрация — тёмный эльф" loading="lazy"></figure>
-        <figure class="g-item"><img src="assets/thumbs/w08.jpg" data-full="assets/works/w08.jpg" alt="Иллюстрация — эльф с алебардой" loading="lazy"></figure>
-        <figure class="g-item"><img src="assets/thumbs/w09.jpg" data-full="assets/works/w09.jpg" alt="Иллюстрация — вампир, неон" loading="lazy"></figure>
-        <figure class="g-item"><img src="assets/thumbs/w10.jpg" data-full="assets/works/w10.jpg" alt="Иллюстрация — портрет" loading="lazy"></figure>
-        <figure class="g-item"><img src="assets/thumbs/w11.jpg" data-full="assets/works/w11.jpg" alt="Иллюстрация — чиби-персонаж" loading="lazy"></figure>
-        <figure class="g-item"><img src="assets/thumbs/w12.jpg" data-full="assets/works/w12.jpg" alt="Иллюстрация — чтение при свече" loading="lazy"></figure>
-        <figure class="g-item"><img src="assets/thumbs/w13.jpg" data-full="assets/works/w13.jpg" alt="Иллюстрация — крылатая фигура" loading="lazy"></figure>
-        <figure class="g-item"><img src="assets/thumbs/w14.jpg" data-full="assets/works/w14.jpg" alt="Иллюстрация — портрет с фиолетовыми волосами" loading="lazy"></figure>
-        <figure class="g-item"><img src="assets/thumbs/w15.jpg" data-full="assets/works/w15.jpg" alt="Иллюстрация — чиби" loading="lazy"></figure>
-        <figure class="g-item"><img src="assets/thumbs/w16.jpg" data-full="assets/works/w16.jpg" alt="Иллюстрация — сцена, научная фантастика" loading="lazy"></figure>
+        <figure class="g-item"><img src="assets/thumbs/w01.jpg" width="760" height="450" loading="lazy" decoding="async" data-full="assets/works/w01.jpg" alt="Illustration — vampire in neon light"></figure>
+        <figure class="g-item"><img src="assets/thumbs/w02.jpg" width="760" height="538" loading="lazy" decoding="async" data-full="assets/works/w02.jpg" alt="Illustration — figure with sparks"></figure>
+        <figure class="g-item"><img src="assets/thumbs/w14.jpg" width="760" height="318" loading="lazy" decoding="async" data-full="assets/works/w14.jpg" alt="Illustration — sci-fi scene"></figure>
+        <figure class="g-item"><img src="assets/thumbs/w04.jpg" width="608" height="760" loading="lazy" decoding="async" data-full="assets/works/w04.jpg" alt="Illustration — figure on the floor"></figure>
+        <figure class="g-item"><img src="assets/thumbs/w05.jpg" width="760" height="537" loading="lazy" decoding="async" data-full="assets/works/w05.jpg" alt="Illustration — warrior with halberd"></figure>
+        <figure class="g-item"><img src="assets/thumbs/w06.jpg" width="760" height="737" loading="lazy" decoding="async" data-full="assets/works/w06.jpg" alt="Illustration — reading in warm light"></figure>
+        <figure class="g-item"><img src="assets/thumbs/w07.jpg" width="713" height="760" loading="lazy" decoding="async" data-full="assets/works/w07.jpg" alt="Illustration — portrait with violet hair"></figure>
+        <figure class="g-item"><img src="assets/thumbs/w08.jpg" width="760" height="536" loading="lazy" decoding="async" data-full="assets/works/w08.jpg" alt="Illustration — two figures in hats"></figure>
+        <figure class="g-item"><img src="assets/thumbs/w09.jpg" width="538" height="760" loading="lazy" decoding="async" data-full="assets/works/w09.jpg" alt="Illustration — character with a bowl"></figure>
+        <figure class="g-item"><img src="assets/thumbs/w10.jpg" width="760" height="537" loading="lazy" decoding="async" data-full="assets/works/w10.jpg" alt="Illustration — two characters"></figure>
+        <figure class="g-item"><img src="assets/thumbs/w11.jpg" width="760" height="608" loading="lazy" decoding="async" data-full="assets/works/w11.jpg" alt="Sketch — two characters"></figure>
+        <figure class="g-item"><img src="assets/thumbs/w12.jpg" width="642" height="760" loading="lazy" decoding="async" data-full="assets/works/w12.jpg" alt="Illustration — elf"></figure>
+        <figure class="g-item"><img src="assets/thumbs/w13.jpg" width="760" height="760" loading="lazy" decoding="async" data-full="assets/works/w13.jpg" alt="Illustration — seated figure in neon"></figure>
+        <figure class="g-item"><img src="assets/thumbs/w03.jpg" width="537" height="760" loading="lazy" decoding="async" data-full="assets/works/w03.jpg" alt="Illustration — figure in a park"></figure>
       </div>
     </div>
   </section>
@@ -331,49 +368,48 @@
     <div class="wrap">
       <div class="sec-head">
         <div>
-          <div class="eyebrow" style="margin-bottom:14px" data-ru="Заказ иллюстрации" data-en="Commission">Заказ иллюстрации</div>
-          <h2 data-ru="Прайс" data-en="Prices">Прайс</h2>
+          <div class="eyebrow" style="margin-bottom:14px" data-en="Commission" data-ru="Заказ иллюстрации">Commission</div>
+          <h2 data-en="Prices" data-ru="Прайс">Prices</h2>
         </div>
-        <p data-ru="Цены в рублях. Можно взять только скетч, только заливку или полный рендер — выбирай уровень."
-           data-en="Prices in RUB. Take just the sketch, flat colours, or a full render — your call.">Цены в рублях. Можно взять только скетч, только заливку или полный рендер — выбирай уровень.</p>
+        <p data-en="Take just the sketch, flat colours or a full render. Payment is 100% upfront."
+           data-ru="Можно взять только скетч, только заливку или полный рендер. Оплата — 100% предоплата.">Take just the sketch, flat colours or a full render. Payment is 100% upfront.</p>
       </div>
 
       <div class="cards">
         <article class="card">
           <h3>Bust</h3>
-          <div class="sub" data-ru="Бюст" data-en="Bust">Бюст</div>
-          <div class="tier"><span data-ru="Скетч" data-en="Sketch">Скетч</span><b>500<small>₽</small></b></div>
-          <div class="tier"><span data-ru="Флэт" data-en="Flat">Флэт</span><b>700<small>₽</small></b></div>
-          <div class="tier"><span data-ru="Рендер" data-en="Render">Рендер</span><b>1&nbsp;500<small>₽</small></b></div>
-          <p class="note" data-ru="По грудь, акцент на лице и свете." data-en="Chest-up, focus on face and lighting.">По грудь, акцент на лице и свете.</p>
+          <div class="sub" data-en="Bust" data-ru="Бюст">Bust</div>
+          <div class="tier"><span data-en="Sketch" data-ru="Скетч">Sketch</span><b data-usd="10">$10</b></div>
+          <div class="tier"><span data-en="Flat" data-ru="Флэт">Flat</span><b data-usd="18">$18</b></div>
+          <div class="tier"><span data-en="Render" data-ru="Рендер">Render</span><b data-usd="30">$30</b></div>
+          <p class="note" data-en="Chest-up, focus on face and lighting." data-ru="По грудь, акцент на лице и свете.">Chest-up, focus on face and lighting.</p>
         </article>
 
         <article class="card">
           <h3>Half&nbsp;body</h3>
-          <div class="sub" data-ru="Полурост" data-en="Half body">Полурост</div>
-          <div class="tier"><span data-ru="Скетч" data-en="Sketch">Скетч</span><b>750<small>₽</small></b></div>
-          <div class="tier"><span data-ru="Флэт" data-en="Flat">Флэт</span><b>1&nbsp;000<small>₽</small></b></div>
-          <div class="tier"><span data-ru="Рендер" data-en="Render">Рендер</span><b>1&nbsp;800<small>₽</small></b></div>
-          <p class="note" data-ru="До бёдер, можно добавить руки и позу." data-en="Thigh-up, hands and pose included.">До бёдер, можно добавить руки и позу.</p>
+          <div class="sub" data-en="Half body" data-ru="Полурост">Half body</div>
+          <div class="tier"><span data-en="Sketch" data-ru="Скетч">Sketch</span><b data-usd="15">$15</b></div>
+          <div class="tier"><span data-en="Flat" data-ru="Флэт">Flat</span><b data-usd="28">$28</b></div>
+          <div class="tier"><span data-en="Render" data-ru="Рендер">Render</span><b data-usd="45">$45</b></div>
+          <p class="note" data-en="Thigh-up, hands and pose included." data-ru="До бёдер, руки и поза включены.">Thigh-up, hands and pose included.</p>
         </article>
 
         <article class="card">
           <h3>Full&nbsp;body</h3>
-          <div class="sub" data-ru="Полный рост" data-en="Full body">Полный рост</div>
-          <div class="tier"><span data-ru="Скетч" data-en="Sketch">Скетч</span><b>1&nbsp;000<small>₽</small></b></div>
-          <div class="tier"><span data-ru="Флэт" data-en="Flat">Флэт</span><b>1&nbsp;400<small>₽</small></b></div>
-          <div class="tier"><span data-ru="Рендер" data-en="Render">Рендер</span><b>2&nbsp;000<small>₽</small></b></div>
-          <p class="note" data-ru="Фигура целиком, поза и характер." data-en="The whole figure, pose and attitude.">Фигура целиком, поза и характер.</p>
+          <div class="sub" data-en="Full body" data-ru="Полный рост">Full body</div>
+          <div class="tier"><span data-en="Sketch" data-ru="Скетч">Sketch</span><b data-usd="20">$20</b></div>
+          <div class="tier"><span data-en="Flat" data-ru="Флэт">Flat</span><b data-usd="38">$38</b></div>
+          <div class="tier"><span data-en="Render" data-ru="Рендер">Render</span><b data-usd="60">$60</b></div>
+          <p class="note" data-en="The whole figure, pose and attitude." data-ru="Фигура целиком, поза и характер.">The whole figure, pose and attitude.</p>
         </article>
       </div>
 
+      <p class="rate-note" data-en="" data-ru="Цены в рублях пересчитаны по курсу 80 ₽ за $1.">Цены в рублях пересчитаны по курсу 80 ₽ за $1.</p>
+
       <div class="comm-foot">
-        <p data-ru="Фон, сложные доспехи, несколько персонажей и коммерческое использование — обсуждаются отдельно."
-           data-en="Backgrounds, complex armour, multiple characters and commercial use are priced separately.">Фон, сложные доспехи, несколько персонажей и коммерческое использование — обсуждаются отдельно.</p>
-        <div class="dl">
-          <a href="assets/price-ru.jpg" target="_blank" rel="noopener" data-ru="Прайс картинкой (RU)" data-en="Price card (RU)">Прайс картинкой (RU)</a>
-          <a href="assets/price-en.jpg" target="_blank" rel="noopener" data-ru="Прайс картинкой (EN)" data-en="Price card (EN)">Прайс картинкой (EN)</a>
-        </div>
+        <p data-en="Backgrounds, complex armour, extra characters and commercial use are priced separately. NSFW commissions are discussed in DMs."
+           data-ru="Фон, сложные доспехи, второй персонаж и коммерческое использование — отдельно. NSFW-коммишки обсуждаются в личных сообщениях.">Backgrounds, complex armour, extra characters and commercial use are priced separately. NSFW commissions are discussed in DMs.</p>
+        <span class="pay" data-en="100% upfront" data-ru="100% предоплата">100% upfront</span>
       </div>
     </div>
   </section>
@@ -382,27 +418,31 @@
     <div class="wrap">
       <div class="sec-head">
         <div>
-          <div class="eyebrow" style="margin-bottom:14px" data-ru="Порядок работы" data-en="How it works">Порядок работы</div>
-          <h2 data-ru="Как я работаю" data-en="Process">Как я работаю</h2>
+          <div class="eyebrow" style="margin-bottom:14px" data-en="How it works" data-ru="Порядок работы">How it works</div>
+          <h2 data-en="Process" data-ru="Как я работаю">Process</h2>
         </div>
       </div>
 
       <div class="steps">
         <div class="step">
-          <h3 data-ru="Заявка" data-en="Request">Заявка</h3>
-          <p data-ru="Пишешь в телеграм: что за персонаж, какой уровень (скетч / флэт / рендер), референсы." data-en="Message me on Telegram: the character, the tier (sketch / flat / render) and references.">Пишешь в телеграм: что за персонаж, какой уровень (скетч / флэт / рендер), референсы.</p>
+          <h3 data-en="Request" data-ru="Заявка">Request</h3>
+          <p data-en="DM me on whichever platform you prefer — Telegram, Instagram, X. References are required."
+             data-ru="Пиши в ЛС любой удобной соцсети — телеграм, инста, твиттер. Референсы обязательны.">DM me on whichever platform you prefer — Telegram, Instagram, X. References are required.</p>
         </div>
         <div class="step">
-          <h3 data-ru="Бронь и скетч" data-en="Booking &amp; sketch">Бронь и скетч</h3>
-          <p data-ru="Подтверждаю цену и срок, беру предоплату 50% — и присылаю скетч на согласование." data-en="I confirm the price and deadline, take a 50% deposit and send the sketch for approval.">Подтверждаю цену и срок, беру предоплату 50% — и присылаю скетч на согласование.</p>
+          <h3 data-en="Booking" data-ru="Бронь">Booking</h3>
+          <p data-en="I confirm the price and deadline, take 100% upfront — and your piece goes into the queue."
+             data-ru="Подтверждаю цену и срок, беру 100% предоплату — и ставлю работу в очередь.">I confirm the price and deadline, take 100% upfront — and your piece goes into the queue.</p>
         </div>
         <div class="step">
-          <h3 data-ru="Правки" data-en="Revisions">Правки</h3>
-          <p data-ru="На этапе скетча — 2 бесплатные правки. Дальше мелкие правки по договорённости." data-en="Two free revisions at the sketch stage. Later tweaks by agreement.">На этапе скетча — 2 бесплатные правки. Дальше мелкие правки по договорённости.</p>
+          <h3 data-en="Sketch &amp; revisions" data-ru="Скетч и правки">Sketch &amp; revisions</h3>
+          <p data-en="I send the sketch for approval. Two free revisions at this stage."
+             data-ru="Присылаю скетч на согласование. На этом этапе — 2 бесплатные правки.">I send the sketch for approval. Two free revisions at this stage.</p>
         </div>
         <div class="step">
-          <h3 data-ru="Финал" data-en="Delivery">Финал</h3>
-          <p data-ru="Готовый файл в PNG/JPG, 300 dpi. Остаток оплаты — перед отправкой без водяного знака." data-en="Final file in PNG/JPG at 300 dpi. Remaining payment before the unwatermarked file.">Готовый файл в PNG/JPG, 300 dpi. Остаток оплаты — перед отправкой без водяного знака.</p>
+          <h3 data-en="Delivery" data-ru="Финал">Delivery</h3>
+          <p data-en="Final file in PNG or JPG at 300 dpi. The .clip source on request."
+             data-ru="Готовый файл PNG или JPG, 300 dpi. Исходник .clip — по запросу.">Final file in PNG or JPG at 300 dpi. The .clip source on request.</p>
         </div>
       </div>
     </div>
@@ -411,18 +451,24 @@
   <section class="sec" id="about">
     <div class="wrap">
       <div class="about">
-        <div class="about-art"><img src="assets/works/w05.jpg" alt="Иллюстрация SHERR" loading="lazy"></div>
+        <div class="about-art">
+          <img src="assets/about.jpg" alt="Illustration by SHERR" loading="lazy">
+          <img class="sticker" src="assets/stickers/s1.png" alt="" aria-hidden="true">
+        </div>
         <div class="about-copy">
-          <div class="eyebrow" style="margin-bottom:14px" data-ru="Обо мне" data-en="About">Обо мне</div>
-          <p class="lead" data-ru="Рисую персонажей, в которых хочется всмотреться: свет, металл, усталость в глазах."
-             data-en="I draw characters you want to look into: light, metal, tiredness in their eyes.">Рисую персонажей, в которых хочется всмотреться: свет, металл, усталость в глазах.</p>
-          <p data-ru="Работаю в тёмном фэнтези и аниме-эстетике — от портретов до сцен с окружением. Люблю многослойный свет и крупные планы, где характер читается раньше сюжета."
-             data-en="I work in dark fantasy and anime aesthetics — from portraits to full scenes. I love layered lighting and close-ups where character reads before story.">Работаю в тёмном фэнтези и аниме-эстетике — от портретов до сцен с окружением. Люблю многослойный свет и крупные планы, где характер читается раньше сюжета.</p>
-          <dl class="facts">
-            <div class="fact"><dt data-ru="Стиль" data-en="Style">Стиль</dt><dd data-ru="Тёмное фэнтези, аниме, полуреализм" data-en="Dark fantasy, anime, semi-realism">Тёмное фэнтези, аниме, полуреализм</dd></div>
-            <div class="fact"><dt data-ru="Инструмент" data-en="Tools">Инструмент</dt><dd>Clip Studio Paint</dd></div>
-            <div class="fact"><dt data-ru="Форматы" data-en="Formats">Форматы</dt><dd>PNG, JPG, 300 dpi</dd></div>
-            <div class="fact"><dt data-ru="Заказы" data-en="Orders">Заказы</dt><dd data-ru="Открыты" data-en="Open">Открыты</dd></div>
+          <div class="eyebrow" style="margin-bottom:14px" data-en="About" data-ru="Обо мне">About</div>
+          <p class="lead" data-en="I&rsquo;m Sherr — a digital artist and illustrator."
+             data-ru="Я Sherr — цифровой художник и&nbsp;иллюстратор.">I&rsquo;m Sherr — a digital artist and illustrator.</p>
+          <p data-en="I draw characters and scenes digitally and work in Clip Studio Paint. I take commissions — from a quick sketch to a full render."
+             data-ru="Рисую персонажей и&nbsp;сцены в&nbsp;цифре, работаю в&nbsp;Clip Studio Paint. Беру коммишки — от быстрого скетча до полного рендера.">I draw characters and scenes digitally and work in Clip Studio Paint. I take commissions — from a quick sketch to a full render.</p>
+          <p data-en="I reply in DMs — send your references and ideas right away."
+             data-ru="Отвечаю в&nbsp;личных сообщениях — референсы и&nbsp;пожелания присылай сразу.">I reply in DMs — send your references and ideas right away.</p>
+
+          <dl class="fact-list">
+            <div class="fact"><dt data-en="Tools" data-ru="Инструмент">Tools</dt><dd>Clip Studio Paint</dd></div>
+            <div class="fact"><dt data-en="Formats" data-ru="Форматы">Formats</dt><dd>PNG, JPG, 300 dpi</dd></div>
+            <div class="fact"><dt data-en="Orders" data-ru="Заказы">Orders</dt><dd data-en="Open" data-ru="Открыты">Open</dd></div>
+            <div class="fact"><dt data-en="Age" data-ru="Возраст">Age</dt><dd>18+</dd></div>
           </dl>
         </div>
       </div>
@@ -431,23 +477,27 @@
 
   <section class="sec contact" id="contact">
     <div class="wrap">
-      <div class="eyebrow" style="margin-bottom:18px" data-ru="Связаться" data-en="Get in touch">Связаться</div>
-      <h2 data-ru="Хочешь <em>иллюстрацию?</em>" data-en="Want an <em>illustration?</em>">Хочешь <em>иллюстрацию?</em></h2>
-      <p style="color:var(--muted);max-width:46ch;margin:22px 0 0" data-ru="Свободные слоты и сроки уточняй в личных сообщениях — отвечаю в течение дня."
-         data-en="Ask about open slots and deadlines in DMs — I reply within a day.">Свободные слоты и сроки уточняй в личных сообщениях — отвечаю в течение дня.</p>
+      <img class="sticker" src="assets/stickers/s2.png" alt="" aria-hidden="true">
+      <div class="eyebrow" style="margin-bottom:18px" data-en="Get in touch" data-ru="Связаться">Get in touch</div>
+      <h2 data-en="Want an <em>illustration?</em>" data-ru="Хочешь <em>иллюстрацию?</em>">Want an <em>illustration?</em></h2>
+      <p style="color:var(--muted);max-width:48ch;margin:20px 0 0" data-en="Ask about open slots and deadlines in DMs — I reply within a day. Send references right away."
+         data-ru="Свободные слоты и сроки уточняй в ЛС — отвечаю в течение дня. Референсы присылай сразу.">Ask about open slots and deadlines in DMs — I reply within a day. Send references right away.</p>
 
       <div class="links">
         <a class="link" href="https://t.me/plina_sherr" target="_blank" rel="noopener">
           <div><div class="n">Telegram</div><div class="h">@plina_sherr</div></div><span class="ar">↗</span>
         </a>
-        <a class="link" href="https://instagram.com/plina_sherr" target="_blank" rel="noopener">
-          <div><div class="n">Instagram</div><div class="h">@plina_sherr</div></div><span class="ar">↗</span>
-        </a>
         <a class="link" href="https://x.com/polinasherr" target="_blank" rel="noopener">
           <div><div class="n">X / Twitter</div><div class="h">@polinasherr</div></div><span class="ar">↗</span>
         </a>
+        <a class="link" href="https://instagram.com/plina_sherr" target="_blank" rel="noopener">
+          <div><div class="n">Instagram</div><div class="h">@plina_sherr</div></div><span class="ar">↗</span>
+        </a>
         <a class="link" href="https://tiktok.com/@polina_sherr" target="_blank" rel="noopener">
           <div><div class="n">TikTok</div><div class="h">@polina_sherr</div></div><span class="ar">↗</span>
+        </a>
+        <a class="link" href="https://boosty.to/plina_sherr" target="_blank" rel="noopener">
+          <div><div class="n">Boosty</div><div class="h">boosty.to/plina_sherr</div></div><span class="ar">↗</span>
         </a>
       </div>
     </div>
@@ -458,16 +508,16 @@
 <footer>
   <div class="wrap">
     <span>© <span id="year">2026</span> SHERR</span>
-    <span data-ru="Все иллюстрации на сайте — авторские. Копирование без разрешения запрещено."
-          data-en="All artwork is original. Please do not repost without permission.">Все иллюстрации на сайте — авторские. Копирование без разрешения запрещено.</span>
+    <span data-en="All artwork is original. Please do not repost without permission."
+          data-ru="Все иллюстрации на сайте — авторские. Копирование без разрешения запрещено.">All artwork is original. Please do not repost without permission.</span>
   </div>
 </footer>
 
-<div class="lb" id="lb" aria-hidden="true" role="dialog" aria-label="Просмотр работы">
-  <button class="lb-close" type="button" aria-label="Закрыть">✕</button>
-  <button class="lb-prev" type="button" aria-label="Предыдущая">‹</button>
+<div class="lb" id="lb" aria-hidden="true" role="dialog" aria-label="Artwork viewer">
+  <button class="lb-close" type="button" aria-label="Close">✕</button>
+  <button class="lb-prev" type="button" aria-label="Previous">‹</button>
   <img id="lb-img" src="" alt="">
-  <button class="lb-next" type="button" aria-label="Следующая">›</button>
+  <button class="lb-next" type="button" aria-label="Next">›</button>
   <div class="lb-count" id="lb-count"></div>
 </div>
 
@@ -475,19 +525,36 @@
 (function () {
   "use strict";
 
+  /* ---------- prices: USD is the base, RUB is derived and kept lower ---------- */
+  var RUB_PER_USD = 80;                  /* курс для рублёвой сетки */
+  var priceNodes = document.querySelectorAll("[data-usd]");
+
+  function formatUsd(v) { return "$" + v; }
+  function formatRub(v) {
+    var rub = Math.floor((v * RUB_PER_USD) / 100) * 100;   /* вниз до сотни */
+    return String(rub).replace(/\B(?=(\d{3})+(?!\d))/g, "\u00a0") + " ₽";
+  }
+  function renderPrices(lang) {
+    priceNodes.forEach(function (el) {
+      var v = parseInt(el.getAttribute("data-usd"), 10);
+      el.textContent = lang === "ru" ? formatRub(v) : formatUsd(v);
+    });
+  }
+
   /* ---------- language ---------- */
-  var i18nNodes = document.querySelectorAll("[data-ru]");
+  var i18nNodes = document.querySelectorAll("[data-en]");
   var langButtons = document.querySelectorAll(".lang button");
+  var currentLang = "en";
 
   function setLang(lang) {
+    currentLang = lang;
     i18nNodes.forEach(function (el) {
       var value = el.getAttribute("data-" + lang);
-      if (value !== null) el.innerHTML = value;
+      if (value !== null && value !== "") el.innerHTML = value;
     });
     document.documentElement.lang = lang;
-    langButtons.forEach(function (b) {
-      b.classList.toggle("on", b.dataset.lang === lang);
-    });
+    langButtons.forEach(function (b) { b.classList.toggle("on", b.dataset.lang === lang); });
+    renderPrices(lang);
     try { localStorage.setItem("sherr-lang", lang); } catch (e) {}
   }
 
@@ -497,79 +564,145 @@
 
   var saved = null;
   try { saved = localStorage.getItem("sherr-lang"); } catch (e) {}
-  if (!saved) {
-    saved = (navigator.language || "ru").toLowerCase().indexOf("ru") === 0 ? "ru" : "en";
-  }
-  setLang(saved);
+  setLang(saved === "ru" ? "ru" : "en");
 
-  /* ---------- sticky nav ---------- */
-  var nav = document.getElementById("nav");
-  function onScroll() { nav.classList.toggle("scrolled", window.scrollY > 24); }
-  window.addEventListener("scroll", onScroll, { passive: true });
-  onScroll();
+  /* ---------- gallery: column masonry ---------- */
+  var grid = document.getElementById("gallery");
+  var items = Array.prototype.slice.call(grid.querySelectorAll(".g-item"));
 
-  /* ---------- reveal ---------- */
-  var items = document.querySelectorAll(".g-item");
-  if ("IntersectionObserver" in window) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
-      });
-    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.05 });
-    items.forEach(function (el, i) {
-      el.style.transitionDelay = ((i % 3) * 60) + "ms";
-      io.observe(el);
+  function layout() {
+    var W = grid.clientWidth;
+    if (!W) return;
+    var gap = Math.round(Math.min(18, Math.max(9, window.innerWidth * 0.011)));
+    var cols = W >= 1500 ? 4 : W >= 1020 ? 3 : W >= 660 ? 2 : 1;
+    var colW = (W - gap * (cols - 1)) / cols;
+    var heights = [];
+    for (var i = 0; i < cols; i++) heights.push(0);
+
+    items.forEach(function (fig) {
+      var img = fig.querySelector("img");
+      var nw = img.naturalWidth || +img.getAttribute("width"),
+          nh = img.naturalHeight || +img.getAttribute("height");
+      if (!nw || !nh) return;
+
+      var h = colW * nh / nw;
+
+      /* самая короткая колонка */
+      var best = 0;
+      for (var c = 1; c < cols; c++) if (heights[c] < heights[best] - 1) best = c;
+
+      fig.style.width = colW + "px";
+      fig.style.height = h + "px";
+      fig.style.left = (best * (colW + gap)) + "px";
+      fig.style.top = heights[best] + "px";
+
+      heights[best] += h + gap;
     });
-  } else {
-    items.forEach(function (el) { el.classList.add("in"); });
+
+    var maxH = 0;
+    for (var m = 0; m < heights.length; m++) if (heights[m] > maxH) maxH = heights[m];
+    grid.style.height = Math.max(0, maxH - gap) + "px";
   }
 
+  items.forEach(function (fig) {
+    var img = fig.querySelector("img");
+    if (img.complete && img.naturalWidth) return;
+    img.addEventListener("load", layout, { once: true });
+    img.addEventListener("error", layout, { once: true });
+  });
+
+  layout();
+  window.addEventListener("load", layout);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(layout);
+
+  var rz;
+  window.addEventListener("resize", function () {
+    clearTimeout(rz);
+    rz = setTimeout(layout, 100);
+  });
   /* ---------- lightbox ---------- */
   var lb = document.getElementById("lb");
   var lbImg = document.getElementById("lb-img");
   var lbCount = document.getElementById("lb-count");
-  var sources = [];
-  var current = 0;
-
-  items.forEach(function (fig) {
+  var sources = items.map(function (fig) {
     var img = fig.querySelector("img");
-    sources.push({ full: img.dataset.full, alt: img.alt });
-    fig.addEventListener("click", function () {
-      current = sources.findIndex(function (s) { return s.full === img.dataset.full; });
-      open();
-    });
+    return { full: img.getAttribute("data-full"), alt: img.alt };
   });
+  var current = 0;
+  var lbToken = 0, lbTimer = null;
 
-  function open() {
+  function preload(i) {
+    var s = sources[(i + sources.length) % sources.length];
+    if (!s) return;
+    var im = new Image();
+    im.src = s.full;
+  }
+
+  function openLb(i) {
+    current = i;
     lb.classList.add("open");
     lb.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
-    render();
+    renderLb(true);
   }
-  function close() {
+  function closeLb() {
     lb.classList.remove("open");
+    lbImg.classList.remove("show");
     lb.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
   }
-  function render() {
+  function renderLb(instant) {
     var s = sources[current];
-    lbImg.src = s.full;
-    lbImg.alt = s.alt;
+    var token = ++lbToken;
+
     lbCount.textContent = (current + 1) + " / " + sources.length;
+    lbImg.classList.remove("show");
+
+    clearTimeout(lbTimer);
+    lbTimer = setTimeout(function () {
+      if (token !== lbToken) return;
+      lbImg.src = s.full;
+      lbImg.alt = s.alt;
+      var showIt = function () {
+        if (token !== lbToken) return;
+        requestAnimationFrame(function () { lbImg.classList.add("show"); });
+      };
+      if (lbImg.complete && lbImg.naturalWidth) showIt();
+      else lbImg.onload = showIt;
+    }, instant ? 30 : 320);
+
+    preload(current + 1);
+    preload(current - 1);
   }
   function step(d) {
     current = (current + d + sources.length) % sources.length;
-    render();
+    renderLb(false);
   }
 
-  lb.querySelector(".lb-close").addEventListener("click", close);
+  items.forEach(function (fig, i) { fig.addEventListener("click", function () { openLb(i); }); });
+
+  lb.querySelector(".lb-close").addEventListener("click", closeLb);
   lb.querySelector(".lb-prev").addEventListener("click", function (e) { e.stopPropagation(); step(-1); });
   lb.querySelector(".lb-next").addEventListener("click", function (e) { e.stopPropagation(); step(1); });
-  lb.addEventListener("click", function (e) { if (e.target === lb) close(); });
+  lb.addEventListener("click", function (e) { if (e.target === lb) closeLb(); });
+
+  /* swipe on phones */
+  var tx = null, ty = null;
+  lb.addEventListener("touchstart", function (e) {
+    if (e.touches.length !== 1) { tx = null; return; }
+    tx = e.touches[0].clientX; ty = e.touches[0].clientY;
+  }, { passive: true });
+  lb.addEventListener("touchend", function (e) {
+    if (tx === null) return;
+    var dx = e.changedTouches[0].clientX - tx, dy = e.changedTouches[0].clientY - ty;
+    tx = null;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.3) step(dx < 0 ? 1 : -1);
+    else if (dy > 90 && Math.abs(dy) > Math.abs(dx) * 1.3) closeLb();
+  }, { passive: true });
 
   document.addEventListener("keydown", function (e) {
     if (!lb.classList.contains("open")) return;
-    if (e.key === "Escape") close();
+    if (e.key === "Escape") closeLb();
     if (e.key === "ArrowLeft") step(-1);
     if (e.key === "ArrowRight") step(1);
   });
