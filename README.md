@@ -22,8 +22,8 @@ python -m http.server 8000
 index.html          весь сайт: разметка, стили, скрипт
 assets/hero/        три картинки коллажа на первом экране (h1 — кроп w05, h2 — w01, h3 — w02)
 assets/about.jpg    картинка в блоке "Обо мне" (кроп 4:5 из "сона.png" = w07)
-assets/works/       работы в полном размере (1700 px, для лайтбокса)
-assets/thumbs/      превью для сетки (760 px)
+assets/works/       работы в большом размере (2400 px по длинной стороне, качество 90) — лайтбокс и широкие экраны
+assets/thumbs/      превью для сетки (1100 px по длинной стороне, качество 86)
 ```
 
 ## Как менять цены
@@ -84,15 +84,16 @@ assets/thumbs/      превью для сетки (760 px)
 
 ## Как добавить работу
 
-1. Положите файл в `assets/works/` (например `w16.jpg`, до 1700 px по длинной стороне).
-2. Сделайте превью в `assets/thumbs/w16.jpg` (до 760 px).
+1. Положите файл в `assets/works/` (например `w16.jpg`, 2400 px по длинной стороне, JPG качество ~90).
+2. Сделайте превью в `assets/thumbs/w16.jpg` (1100 px по длинной стороне, качество ~86).
+   Сохраняйте JPG без «сглаживания» цвета (chroma subsampling 4:4:4), иначе тёмные градиенты и зерно мылятся.
 3. В `index.html` в `<div class="gallery" id="gallery">` добавьте строку:
 
 ```html
-<figure class="g-item"><img src="assets/thumbs/w16.jpg" width="760" height="540" loading="lazy" decoding="async" data-full="assets/works/w16.jpg" alt="Описание работы"></figure>
+<figure class="g-item"><img src="assets/thumbs/w16.jpg" srcset="assets/thumbs/w16.jpg 1100w, assets/works/w16.jpg 2400w" sizes="(max-width:560px) 100vw, 40vw" width="1100" height="780" loading="lazy" decoding="async" data-full="assets/works/w16.jpg" alt="Описание работы"></figure>
 ```
 
-Порядок в разметке = порядок в сетке. `width`/`height` — реальный размер превью. Сетка сама раскладывает работы по рядам.
+Порядок в разметке = порядок в сетке. `width`/`height` — реальный размер превью, `srcset` — ширины превью и большой версии (браузер сам берёт большую, если ячейка крупная или экран чёткий). Сетка сама раскладывает работы по рядам.
 
 ## Сетка
 
