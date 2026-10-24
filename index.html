@@ -57,10 +57,13 @@
     background:none;
   }
   .nav::before{
-    content:"";position:absolute;left:0;right:0;top:0;bottom:-44px;z-index:-1;pointer-events:none;
-    background:linear-gradient(rgba(13,12,16,.95) 0%,rgba(13,12,16,.88) 52%,rgba(13,12,16,.52) 78%,rgba(13,12,16,0) 100%);
-    -webkit-backdrop-filter:blur(6px);
-    backdrop-filter:blur(6px);
+    content:"";position:absolute;left:0;right:0;top:0;bottom:-56px;z-index:-1;pointer-events:none;
+    background:linear-gradient(rgba(13,12,16,.92) 0%,rgba(13,12,16,.78) 40%,rgba(13,12,16,.4) 70%,rgba(13,12,16,0) 100%);
+    -webkit-backdrop-filter:blur(10px);
+    backdrop-filter:blur(10px);
+    /* the blur fades out together with the tint - no hard edge */
+    -webkit-mask-image:linear-gradient(#000 0%,#000 38%,rgba(0,0,0,.6) 62%,rgba(0,0,0,.2) 82%,transparent 100%);
+    mask-image:linear-gradient(#000 0%,#000 38%,rgba(0,0,0,.6) 62%,rgba(0,0,0,.2) 82%,transparent 100%);
   }
   .brand{font-family:var(--serif);font-size:25px;letter-spacing:.14em;line-height:1}
   .brand span{color:var(--accent)}
@@ -75,21 +78,26 @@
   .lang button.on{background:var(--accent);color:#0f0e11;font-weight:600}
   @media (max-width:860px){
     .nav-links a:not(.cta-mini){display:none}
-    .nav-links a.mob{display:inline-block;font-size:11px;letter-spacing:.08em;color:var(--muted)}
-    .nav-links{gap:12px}
-    .brand{font-size:21px}
-    .cta-mini{font-size:11px;letter-spacing:.08em}
+    .nav-links a.mob{display:inline-block}
+    .nav-links a.mob,.nav-links a.cta-mini{font-size:13px;letter-spacing:.08em}
+    .nav-links a.cta-mini{color:var(--ink)}
+    .nav-links{gap:16px}
+    .brand{font-size:23px}
+    .lang button{font-size:12px;padding:5px 11px}
   }
   @media (max-width:480px){
     .nav{gap:10px}
-    .brand{font-size:19px;letter-spacing:.1em}
-    .nav-links{gap:10px}
-    .nav-links a.mob,.nav-links a.cta-mini{font-size:10px;letter-spacing:.04em}
+    .brand{font-size:21px;letter-spacing:.1em}
+    .nav-links{gap:12px}
+    .nav-links a.mob,.nav-links a.cta-mini{font-size:12.5px;letter-spacing:.05em}
     .lang{padding:2px}
-    .lang button{padding:4px 7px;font-size:10px}
+    .lang button{padding:5px 9px;font-size:11.5px}
   }
-  @media (max-width:370px){
+  @media (max-width:400px){
     .nav-links a.mob[href="#works"]{display:none}
+  }
+  @media (max-width:340px){
+    .nav-links a.mob[href="#commissions"]{display:none}
   }
 
   /* ---------- hero ---------- */
@@ -228,8 +236,6 @@
   }
   .comm-foot p{margin:0;color:var(--muted);font-size:14px;max-width:70ch}
   .comm-foot .pay{font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);white-space:nowrap}
-  .rate-note{display:none;margin-top:12px;font-size:12px;color:#8b8499}
-  html[lang="ru"] .rate-note{display:block}
 
   /* ---------- process ---------- */
   .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,2.4vw,34px);counter-reset:s}
@@ -244,35 +250,17 @@
   .step p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.55}
 
   /* ---------- about ---------- */
-  .about{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(26px,5vw,80px);align-items:start}
+  .about{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(26px,5vw,90px);align-items:center}
   @media (max-width:860px){.about{grid-template-columns:1fr}}
-  .about-art{border-radius:3px;border:1px solid var(--line)}
+  .about-art{border-radius:3px;border:1px solid var(--line);overflow:hidden;max-width:560px}
   .about-art img{width:100%;height:auto}
   .about-copy p{color:#bdb6cb;margin:0 0 16px;font-size:15.5px;max-width:56ch}
   .about-copy .lead{font-family:var(--serif);font-size:clamp(22px,2.4vw,30px);line-height:1.35;color:var(--ink);font-style:italic}
-  .fact-list{display:grid;grid-template-columns:1fr 1fr;gap:16px 26px;margin:28px 0 0;padding-top:24px;border-top:1px solid var(--line)}
+  .fact-list{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:16px clamp(26px,4vw,56px);margin:28px 0 0;padding-top:24px;border-top:1px solid var(--line)}
   .fact{margin:0}
+  @media (max-width:520px){.fact-list{grid-template-columns:1fr 1fr}}
   .fact dt{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-dim);margin-bottom:4px}
   .fact dd{margin:0;font-size:14.5px;color:#cfc9dc}
-  .age{display:inline-block;margin-top:24px;font-size:11px;letter-spacing:.16em;color:#8b8499;border:1px solid var(--line);border-radius:100px;padding:4px 12px}
-
-  /* ---------- stickers ---------- */
-  .sticker{
-    position:absolute;z-index:3;pointer-events:none;user-select:none;
-    width:clamp(84px,8.5vw,122px);height:auto;
-    filter:drop-shadow(0 16px 30px rgba(0,0,0,.55));
-  }
-  .about-art{position:relative}
-  .about-art img{border-radius:3px}
-  .about-art .sticker{left:-20px;bottom:-26px;transform:rotate(-8deg);width:clamp(84px,8.5vw,122px);height:auto}
-  .contact .wrap{position:relative}
-  .contact .sticker{right:3%;top:-26px;transform:rotate(9deg);width:clamp(68px,6.5vw,100px)}
-  @media (max-width:860px){
-    .about-art .sticker{width:80px;left:-8px;bottom:-18px}
-  }
-  @media (max-width:720px){
-    .contact .sticker{display:none}
-  }
 
   /* ---------- contact ---------- */
   .contact{border-top:1px solid var(--line);background:radial-gradient(90% 120% at 50% 0%,rgba(125,108,158,.16),transparent 65%)}
@@ -404,8 +392,6 @@
         </article>
       </div>
 
-      <p class="rate-note" data-en="" data-ru="Цены в рублях пересчитаны по курсу 80 ₽ за $1.">Цены в рублях пересчитаны по курсу 80 ₽ за $1.</p>
-
       <div class="comm-foot">
         <p data-en="Backgrounds, complex armour, extra characters and commercial use are priced separately. NSFW commissions are discussed in DMs."
            data-ru="Фон, сложные доспехи, второй персонаж и коммерческое использование — отдельно. NSFW-коммишки обсуждаются в личных сообщениях.">Backgrounds, complex armour, extra characters and commercial use are priced separately. NSFW commissions are discussed in DMs.</p>
@@ -452,23 +438,21 @@
     <div class="wrap">
       <div class="about">
         <div class="about-art">
-          <img src="assets/about.jpg" alt="Illustration by SHERR" loading="lazy">
-          <img class="sticker" src="assets/stickers/s1.png" alt="" aria-hidden="true">
+          <img src="assets/about.jpg" width="1120" height="1400" alt="Portrait illustration by SHERR" loading="lazy">
         </div>
         <div class="about-copy">
           <div class="eyebrow" style="margin-bottom:14px" data-en="About" data-ru="Обо мне">About</div>
-          <p class="lead" data-en="I&rsquo;m Sherr — a digital artist and illustrator."
-             data-ru="Я Sherr — цифровой художник и&nbsp;иллюстратор.">I&rsquo;m Sherr — a digital artist and illustrator.</p>
-          <p data-en="I draw characters and scenes digitally and work in Clip Studio Paint. I take commissions — from a quick sketch to a full render."
-             data-ru="Рисую персонажей и&nbsp;сцены в&nbsp;цифре, работаю в&nbsp;Clip Studio Paint. Беру коммишки — от быстрого скетча до полного рендера.">I draw characters and scenes digitally and work in Clip Studio Paint. I take commissions — from a quick sketch to a full render.</p>
-          <p data-en="I reply in DMs — send your references and ideas right away."
-             data-ru="Отвечаю в&nbsp;личных сообщениях — референсы и&nbsp;пожелания присылай сразу.">I reply in DMs — send your references and ideas right away.</p>
+          <p class="lead" data-en="Hi, I&rsquo;m Sherr. I draw characters with a mood."
+             data-ru="Привет, я Sherr. Рисую персонажей с&nbsp;настроением.">Hi, I&rsquo;m Sherr. I draw characters with a mood.</p>
+          <p data-en="Portraits, original characters and fan art, quiet everyday moments and neon nights. I love expressive faces, dramatic light, strong colour and a bit of grain and texture."
+             data-ru="Портреты, оригинальные персонажи и&nbsp;фан-арт, тихие бытовые моменты и&nbsp;неоновые ночи. Люблю выразительные лица, драматичный свет, сочный цвет и&nbsp;немного зерна и&nbsp;текстуры.">Portraits, original characters and fan art, quiet everyday moments and neon nights. I love expressive faces, dramatic light, strong colour and a bit of grain and texture.</p>
+          <p data-en="If you have a character in your head or on a reference sheet, I&rsquo;ll bring them to life, from a loose sketch to a fully rendered piece."
+             data-ru="Если у&nbsp;тебя есть персонаж в&nbsp;голове или на&nbsp;референсах&nbsp;— я&nbsp;помогу ему ожить: от&nbsp;лёгкого скетча до&nbsp;полного рендера.">If you have a character in your head or on a reference sheet, I&rsquo;ll bring them to life, from a loose sketch to a fully rendered piece.</p>
 
           <dl class="fact-list">
             <div class="fact"><dt data-en="Tools" data-ru="Инструмент">Tools</dt><dd>Clip Studio Paint</dd></div>
             <div class="fact"><dt data-en="Formats" data-ru="Форматы">Formats</dt><dd>PNG, JPG, 300 dpi</dd></div>
             <div class="fact"><dt data-en="Orders" data-ru="Заказы">Orders</dt><dd data-en="Open" data-ru="Открыты">Open</dd></div>
-            <div class="fact"><dt data-en="Age" data-ru="Возраст">Age</dt><dd>18+</dd></div>
           </dl>
         </div>
       </div>
@@ -477,7 +461,6 @@
 
   <section class="sec contact" id="contact">
     <div class="wrap">
-      <img class="sticker" src="assets/stickers/s2.png" alt="" aria-hidden="true">
       <div class="eyebrow" style="margin-bottom:18px" data-en="Get in touch" data-ru="Связаться">Get in touch</div>
       <h2 data-en="Want an <em>illustration?</em>" data-ru="Хочешь <em>иллюстрацию?</em>">Want an <em>illustration?</em></h2>
       <p style="color:var(--muted);max-width:48ch;margin:20px 0 0" data-en="Ask about open slots and deadlines in DMs — I reply within a day. Send references right away."
@@ -566,42 +549,73 @@
   try { saved = localStorage.getItem("sherr-lang"); } catch (e) {}
   setLang(saved === "ru" ? "ru" : "en");
 
-  /* ---------- gallery: column masonry ---------- */
+  /* ---------- gallery: justified rows ----------
+     Every row fills the full width, images keep their proportions (no cropping),
+     order is kept. Rows are balanced so there is no half-empty last row.
+     Phones: one work per row, full width. */
   var grid = document.getElementById("gallery");
   var items = Array.prototype.slice.call(grid.querySelectorAll(".g-item"));
+
+  function ratioOf(fig) {
+    var img = fig.querySelector("img");
+    var w = +img.getAttribute("width") || img.naturalWidth || 1;
+    var h = +img.getAttribute("height") || img.naturalHeight || 1;
+    return w / h;
+  }
+
+  /* split ratios into k contiguous rows with sums as even as possible */
+  function partition(r, k) {
+    var n = r.length, pre = [0];
+    for (var i = 0; i < n; i++) pre.push(pre[i] + r[i]);
+    var avg = pre[n] / k, INF = 1e18;
+    var cost = [], cut = [];
+    for (var j = 0; j <= k; j++) { cost.push([]); cut.push([]); for (var t = 0; t <= n; t++) { cost[j].push(INF); cut[j].push(0); } }
+    cost[0][0] = 0;
+    for (j = 1; j <= k; j++) {
+      for (t = j; t <= n; t++) {
+        for (var p = j - 1; p < t; p++) {
+          var d = pre[t] - pre[p] - avg;
+          var c = cost[j - 1][p] + d * d;
+          if (c < cost[j][t]) { cost[j][t] = c; cut[j][t] = p; }
+        }
+      }
+    }
+    var rows = [], end = n;
+    for (j = k; j >= 1; j--) { var st = cut[j][end]; rows.unshift([st, end]); end = st; }
+    return rows;
+  }
 
   function layout() {
     var W = grid.clientWidth;
     if (!W) return;
-    var gap = Math.round(Math.min(18, Math.max(9, window.innerWidth * 0.011)));
-    var cols = W >= 1500 ? 4 : W >= 1020 ? 3 : W >= 660 ? 2 : 1;
-    var colW = (W - gap * (cols - 1)) / cols;
-    var heights = [];
-    for (var i = 0; i < cols; i++) heights.push(0);
+    var gap = Math.round(Math.min(16, Math.max(8, window.innerWidth * 0.01)));
+    var r = items.map(ratioOf);
+    var y = 0;
 
-    items.forEach(function (fig) {
-      var img = fig.querySelector("img");
-      var nw = img.naturalWidth || +img.getAttribute("width"),
-          nh = img.naturalHeight || +img.getAttribute("height");
-      if (!nw || !nh) return;
-
-      var h = colW * nh / nw;
-
-      /* самая короткая колонка */
-      var best = 0;
-      for (var c = 1; c < cols; c++) if (heights[c] < heights[best] - 1) best = c;
-
-      fig.style.width = colW + "px";
-      fig.style.height = h + "px";
-      fig.style.left = (best * (colW + gap)) + "px";
-      fig.style.top = heights[best] + "px";
-
-      heights[best] += h + gap;
-    });
-
-    var maxH = 0;
-    for (var m = 0; m < heights.length; m++) if (heights[m] > maxH) maxH = heights[m];
-    grid.style.height = Math.max(0, maxH - gap) + "px";
+    if (W < 560) {
+      items.forEach(function (fig, i) {
+        var h = W / r[i];
+        fig.style.cssText = "width:" + W + "px;height:" + h + "px;left:0;top:" + y + "px";
+        y += h + gap;
+      });
+    } else {
+      var target = W >= 1500 ? 400 : W >= 1020 ? 340 : 270;
+      var total = r.reduce(function (a, b) { return a + b; }, 0);
+      var k = Math.max(1, Math.min(items.length, Math.round(total * target / W)));
+      partition(r, k).forEach(function (row) {
+        var sum = 0, n = row[1] - row[0];
+        for (var i = row[0]; i < row[1]; i++) sum += r[i];
+        var h = (W - gap * (n - 1)) / sum, x = 0;
+        for (i = row[0]; i < row[1]; i++) {
+          var w = h * r[i];
+          if (i === row[1] - 1) w = W - x;          /* absorb rounding */
+          items[i].style.cssText = "width:" + w + "px;height:" + h + "px;left:" + x + "px;top:" + y + "px";
+          x += w + gap;
+        }
+        y += h + gap;
+      });
+    }
+    grid.style.height = Math.max(0, y - gap) + "px";
   }
 
   items.forEach(function (fig) {
