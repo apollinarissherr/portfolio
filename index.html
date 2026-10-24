@@ -239,35 +239,23 @@
     display:flex;flex-direction:column;
   }
   .card:hover{border-color:rgba(168,148,201,.5);transform:translateY(-3px)}
-  .card-ex{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--bg-soft)}
-  .stage-img{
-    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;cursor:zoom-in;
-    opacity:0;transition:opacity .45s ease,transform .7s cubic-bezier(.2,.7,.2,1);
+  .card-ex{
+    position:relative;display:block;width:100%;padding:0;border:0;cursor:zoom-in;
+    aspect-ratio:16/10;overflow:hidden;background:var(--bg-soft);
   }
-  .stage-img.on{opacity:1;z-index:1}
-  .card:hover .stage-img.on{transform:scale(1.03)}
-  .stage-tabs{
-    display:grid;grid-template-columns:repeat(3,1fr);gap:3px;padding:3px;margin:0 0 22px;
-    background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:100px;
+  .card-ex img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+  .card:hover .card-ex img{transform:scale(1.03)}
+  .card-ex .ex-label{
+    position:absolute;left:12px;bottom:12px;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+    background:rgba(13,12,16,.75);border:1px solid var(--line);border-radius:100px;padding:4px 10px;color:#d8d2e3;
+    -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
   }
-  .stage-tabs button{
-    background:none;border:0;cursor:pointer;color:var(--muted);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;
-    padding:8px 6px;border-radius:100px;transition:background .2s,color .2s;
-  }
-  .stage-tabs button:hover{color:var(--ink)}
-  .stage-tabs button.on{background:var(--accent);color:#100e14;font-weight:600}
   .card-body{padding:clamp(20px,2.2vw,30px);display:flex;flex-direction:column;flex:1}
   .card h3{font-size:clamp(26px,2.6vw,34px);letter-spacing:.03em;text-transform:uppercase;margin-bottom:6px}
   .card .scope{font-size:13px;color:var(--muted);margin:0 0 18px}
-  .tier{
-    display:flex;align-items:baseline;justify-content:space-between;gap:10px;width:100%;
-    padding:11px 8px;margin:0 -8px;width:calc(100% + 16px);background:none;border:0;border-top:1px dashed rgba(232,228,238,.13);
-    cursor:pointer;text-align:left;border-radius:4px;transition:background .2s;
-  }
-  .tier:hover,.tier.on{background:rgba(168,148,201,.07)}
-  .tier.on span{color:var(--ink)}
+  .tier{display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding:11px 0;border-top:1px dashed rgba(232,228,238,.13)}
   .tier:last-child{border-bottom:1px dashed rgba(232,228,238,.13)}
-  .tier span{font-size:14px;color:#a9a2b8;transition:color .2s}
+  .tier span{font-size:14px;color:#c9c3d6}
   .tier b{font-family:var(--serif);font-size:24px;font-weight:600;color:var(--accent);white-space:nowrap;font-variant-numeric:lining-nums tabular-nums}
 
   .levels{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);margin-top:clamp(18px,2.4vw,28px)}
@@ -449,59 +437,51 @@
       </div>
 
       <!-- ЦЕНЫ: data-usd — английская версия, data-rub — русская -->
-      <!-- ЦЕНЫ: data-usd — английская версия, data-rub — русская.
-           Картинки-примеры: data-stage = sketch / flat / render -->
       <div class="cards">
-        <article class="card" data-stage="render">
-          <div class="card-ex">
-            <img class="stage-img" data-stage="sketch" data-open="assets/stages/bust-sketch.jpg" src="assets/stages/bust-sketch.jpg" width="1040" height="1300" loading="lazy" alt="Bust example — sketch">
-            <img class="stage-img" data-stage="flat" data-open="assets/works/w17.jpg" src="assets/thumbs/w17.jpg" width="1100" height="892" loading="lazy" alt="Bust example — flat" style="object-position:45% 30%">
-            <img class="stage-img on" data-stage="render" data-open="assets/stages/bust-render-warrior.jpg" src="assets/stages/bust-render-warrior.jpg" width="1040" height="1300" loading="lazy" alt="Bust example — render">
-          </div>
+        <article class="card">
+          <button class="card-ex" type="button" data-open="assets/works/w01.jpg" aria-label="Open example">
+            <img src="assets/thumbs/w01.jpg" width="1100" height="651" loading="lazy" alt="Bust example">
+            <span class="ex-label" data-en="Example" data-ru="Пример">Example</span>
+          </button>
           <div class="card-body">
-            <div class="stage-tabs" role="group" aria-label="Level of finish"><button type="button" data-stage="sketch" data-en="Sketch" data-ru="Скетч">Sketch</button><button type="button" data-stage="flat" data-en="Flat" data-ru="Флэт">Flat</button><button type="button" data-stage="render" class="on" data-en="Render" data-ru="Рендер">Render</button></div>
             <h3 data-en="Bust" data-ru="Бюст">Bust</h3>
             <p class="scope" data-en="Chest-up, focus on face and lighting." data-ru="По грудь, акцент на&nbsp;лице и&nbsp;свете.">Chest-up, focus on face and lighting.</p>
             <div class="tiers">
-              <button type="button" class="tier" data-stage="sketch"><span data-en="Sketch" data-ru="Скетч">Sketch</span><b data-usd="15" data-rub="600">$15</b></button>
-              <button type="button" class="tier" data-stage="flat"><span data-en="Flat" data-ru="Флэт">Flat</span><b data-usd="25" data-rub="1300">$25</b></button>
-              <button type="button" class="tier on" data-stage="render"><span data-en="Render" data-ru="Рендер">Render</span><b data-usd="40" data-rub="2200">$40</b></button>
+              <div class="tier"><span data-en="Sketch" data-ru="Скетч">Sketch</span><b data-usd="15" data-rub="600">$15</b></div>
+              <div class="tier"><span data-en="Flat" data-ru="Флэт">Flat</span><b data-usd="25" data-rub="1300">$25</b></div>
+              <div class="tier"><span data-en="Render" data-ru="Рендер">Render</span><b data-usd="40" data-rub="2200">$40</b></div>
             </div>
           </div>
         </article>
 
-        <article class="card" data-stage="render">
-          <div class="card-ex">
-            <img class="stage-img" data-stage="sketch" data-open="assets/stages/half-sketch.jpg" src="assets/stages/half-sketch.jpg" width="1040" height="1300" loading="lazy" alt="Half body example — sketch">
-            <img class="stage-img" data-stage="flat" data-open="assets/stages/half-flat.jpg" src="assets/stages/half-flat.jpg" width="1040" height="1300" loading="lazy" alt="Half body example — flat">
-            <img class="stage-img on" data-stage="render" data-open="assets/stages/half-render.jpg" src="assets/stages/half-render.jpg" width="1040" height="1300" loading="lazy" alt="Half body example — render">
-          </div>
+        <article class="card">
+          <button class="card-ex" type="button" data-open="assets/works/w06.jpg" aria-label="Open example">
+            <img src="assets/thumbs/w06.jpg" width="1100" height="1066" loading="lazy" alt="Half body example" style="object-position:50% 35%">
+            <span class="ex-label" data-en="Example" data-ru="Пример">Example</span>
+          </button>
           <div class="card-body">
-            <div class="stage-tabs" role="group" aria-label="Level of finish"><button type="button" data-stage="sketch" data-en="Sketch" data-ru="Скетч">Sketch</button><button type="button" data-stage="flat" data-en="Flat" data-ru="Флэт">Flat</button><button type="button" data-stage="render" class="on" data-en="Render" data-ru="Рендер">Render</button></div>
             <h3 data-en="Half body" data-ru="Полурост">Half body</h3>
             <p class="scope" data-en="Thigh-up, hands and pose included." data-ru="До&nbsp;бёдер, руки и&nbsp;поза включены.">Thigh-up, hands and pose included.</p>
             <div class="tiers">
-              <button type="button" class="tier" data-stage="sketch"><span data-en="Sketch" data-ru="Скетч">Sketch</span><b data-usd="20" data-rub="900">$20</b></button>
-              <button type="button" class="tier" data-stage="flat"><span data-en="Flat" data-ru="Флэт">Flat</span><b data-usd="35" data-rub="2000">$35</b></button>
-              <button type="button" class="tier on" data-stage="render"><span data-en="Render" data-ru="Рендер">Render</span><b data-usd="60" data-rub="3300">$60</b></button>
+              <div class="tier"><span data-en="Sketch" data-ru="Скетч">Sketch</span><b data-usd="20" data-rub="900">$20</b></div>
+              <div class="tier"><span data-en="Flat" data-ru="Флэт">Flat</span><b data-usd="35" data-rub="2000">$35</b></div>
+              <div class="tier"><span data-en="Render" data-ru="Рендер">Render</span><b data-usd="60" data-rub="3300">$60</b></div>
             </div>
           </div>
         </article>
 
-        <article class="card" data-stage="render">
-          <div class="card-ex">
-            <img class="stage-img" data-stage="sketch" data-open="assets/stages/full-sketch.jpg" src="assets/stages/full-sketch.jpg" width="1040" height="1300" loading="lazy" alt="Full body example — sketch">
-            <img class="stage-img" data-stage="flat" data-open="assets/stages/full-flat.jpg" src="assets/stages/full-flat.jpg" width="1040" height="1300" loading="lazy" alt="Full body example — flat">
-            <img class="stage-img on" data-stage="render" data-open="assets/stages/full-render.jpg" src="assets/stages/full-render.jpg" width="1040" height="1300" loading="lazy" alt="Full body example — render">
-          </div>
+        <article class="card">
+          <button class="card-ex" type="button" data-open="assets/works/w13.jpg" aria-label="Open example">
+            <img src="assets/thumbs/w13.jpg" width="1100" height="1100" loading="lazy" alt="Full body example" style="object-position:50% 60%">
+            <span class="ex-label" data-en="Example" data-ru="Пример">Example</span>
+          </button>
           <div class="card-body">
-            <div class="stage-tabs" role="group" aria-label="Level of finish"><button type="button" data-stage="sketch" data-en="Sketch" data-ru="Скетч">Sketch</button><button type="button" data-stage="flat" data-en="Flat" data-ru="Флэт">Flat</button><button type="button" data-stage="render" class="on" data-en="Render" data-ru="Рендер">Render</button></div>
             <h3 data-en="Full body" data-ru="Полный рост">Full body</h3>
             <p class="scope" data-en="The whole figure, pose and attitude." data-ru="Фигура целиком, поза и&nbsp;характер.">The whole figure, pose and attitude.</p>
             <div class="tiers">
-              <button type="button" class="tier" data-stage="sketch"><span data-en="Sketch" data-ru="Скетч">Sketch</span><b data-usd="30" data-rub="1300">$30</b></button>
-              <button type="button" class="tier" data-stage="flat"><span data-en="Flat" data-ru="Флэт">Flat</span><b data-usd="50" data-rub="2800">$50</b></button>
-              <button type="button" class="tier on" data-stage="render"><span data-en="Render" data-ru="Рендер">Render</span><b data-usd="80" data-rub="4800">$80</b></button>
+              <div class="tier"><span data-en="Sketch" data-ru="Скетч">Sketch</span><b data-usd="30" data-rub="1300">$30</b></div>
+              <div class="tier"><span data-en="Flat" data-ru="Флэт">Flat</span><b data-usd="50" data-rub="2800">$50</b></div>
+              <div class="tier"><span data-en="Render" data-ru="Рендер">Render</span><b data-usd="80" data-rub="4800">$80</b></div>
             </div>
           </div>
         </article>
@@ -815,7 +795,7 @@
     var img = fig.querySelector("img");
     return { full: img.getAttribute("data-full"), alt: img.alt };
   });
-  var list = sources;   /* what the arrows browse: the gallery, or the 3 stages of a price card */
+  var list = sources;   /* what the arrows browse */
   var current = 0, lbToken = 0, lbTimer = null;
 
   function preload(i) {
@@ -861,45 +841,11 @@
   }
 
   allItems.forEach(function (fig, i) { fig.addEventListener("click", function () { openLb(i); }); });
-  document.querySelectorAll(".hero-art [data-open]").forEach(function (el) {
+  document.querySelectorAll("[data-open]").forEach(function (el) {
     el.addEventListener("click", function () {
       var src = el.getAttribute("data-open"), idx = 0;
       sources.forEach(function (s, i) { if (s.full === src) idx = i; });
       openLb(idx);
-    });
-  });
-
-  /* ---------- price cards: Sketch / Flat / Render switcher ---------- */
-  var stageNames = { sketch: ["Sketch", "Скетч"], flat: ["Flat", "Флэт"], render: ["Render", "Рендер"] };
-  document.querySelectorAll(".card").forEach(function (card) {
-    var imgs = Array.prototype.slice.call(card.querySelectorAll(".stage-img"));
-    var controls = card.querySelectorAll("[data-stage]:not(.stage-img)");
-    function setStage(st) {
-      card.setAttribute("data-stage", st);
-      imgs.forEach(function (im) {
-        if (im.getAttribute("data-stage") === st) { im.loading = "eager"; im.classList.add("on"); }
-        else im.classList.remove("on");
-      });
-      controls.forEach(function (c) { c.classList.toggle("on", c.getAttribute("data-stage") === st); });
-    }
-    controls.forEach(function (c) {
-      c.addEventListener("click", function (e) { e.stopPropagation(); setStage(c.getAttribute("data-stage")); });
-    });
-    /* warm up the other stages once the card is near the screen */
-    if ("IntersectionObserver" in window) {
-      var io = new IntersectionObserver(function (en) {
-        if (en[0].isIntersecting) { imgs.forEach(function (im) { im.loading = "eager"; }); io.disconnect(); }
-      }, { rootMargin: "300px" });
-      io.observe(card);
-    }
-    imgs.forEach(function (im, i) {
-      im.addEventListener("click", function () {
-        var stages = imgs.map(function (x) {
-          var n = stageNames[x.getAttribute("data-stage")];
-          return { full: x.getAttribute("data-open"), alt: x.alt, label: currentLang === "ru" ? n[1] : n[0] };
-        });
-        openLb(i, stages);
-      });
     });
   });
 
