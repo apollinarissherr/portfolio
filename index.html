@@ -15,6 +15,7 @@
 <link rel="canonical" href="https://apollinarissherr.github.io/portfolio/">
 <meta name="theme-color" content="#0f0e11">
 <link rel="icon" type="image/png" href="assets/stickers/favicon.png">
+<link rel="preload" as="image" href="assets/hero/h1.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -22,19 +23,21 @@
   :root{
     --bg:#0f0e11;
     --bg-soft:#151319;
+    --bg-card:#141218;
     --line:rgba(232,228,238,.12);
     --ink:#e8e4ee;
     --muted:#a09aaf;
+    --dim:#8b8499;
     --accent:#a894c9;
     --accent-dim:#a190c0;
     --serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
     --sans:"Manrope",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
     --pad:clamp(18px,3.6vw,56px);
-    --max:1800px;
-    --gap:clamp(10px,1.1vw,18px);
+    --max:1640px;
+    --gap:clamp(10px,1.1vw,16px);
   }
   *,*::before,*::after{box-sizing:border-box}
-  html{scroll-behavior:smooth}
+  html{scroll-behavior:smooth;scroll-padding-top:70px}
   body{
     margin:0;background:var(--bg);color:var(--ink);
     font-family:var(--sans);font-weight:300;font-size:16px;line-height:1.65;
@@ -42,11 +45,13 @@
   }
   img{display:block;max-width:100%}
   a{color:inherit;text-decoration:none}
+  button{font:inherit;color:inherit}
   h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.05;margin:0}
   ::selection{background:var(--accent);color:#0f0e11}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 
   .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
-  .eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);font-weight:500}
+  .eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:14px}
 
   /* ---------- nav ---------- */
   .nav{
@@ -54,14 +59,11 @@
     display:flex;align-items:center;justify-content:space-between;gap:24px;
     padding:14px var(--pad);
     padding-top:max(14px,env(safe-area-inset-top));
-    background:none;
   }
   .nav::before{
     content:"";position:absolute;left:0;right:0;top:0;bottom:-56px;z-index:-1;pointer-events:none;
     background:linear-gradient(rgba(13,12,16,.92) 0%,rgba(13,12,16,.78) 40%,rgba(13,12,16,.4) 70%,rgba(13,12,16,0) 100%);
-    -webkit-backdrop-filter:blur(10px);
-    backdrop-filter:blur(10px);
-    /* the blur fades out together with the tint - no hard edge */
+    -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
     -webkit-mask-image:linear-gradient(#000 0%,#000 38%,rgba(0,0,0,.6) 62%,rgba(0,0,0,.2) 82%,transparent 100%);
     mask-image:linear-gradient(#000 0%,#000 38%,rgba(0,0,0,.6) 62%,rgba(0,0,0,.2) 82%,transparent 100%);
   }
@@ -70,17 +72,16 @@
   .nav-links{display:flex;align-items:center;gap:26px}
   .nav-links a{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);transition:color .2s}
   .nav-links a:hover{color:var(--ink)}
+  .nav-links a.cta-mini{color:var(--ink)}
   .lang{display:flex;align-items:center;gap:2px;border:1px solid var(--line);border-radius:100px;padding:3px}
   .lang button{
-    font:inherit;font-size:11px;letter-spacing:.1em;background:none;border:0;color:var(--muted);
+    font-size:11px;letter-spacing:.1em;background:none;border:0;color:var(--muted);
     padding:4px 10px;border-radius:100px;cursor:pointer;transition:.2s;
   }
   .lang button.on{background:var(--accent);color:#0f0e11;font-weight:600}
   @media (max-width:860px){
-    .nav-links a:not(.cta-mini){display:none}
-    .nav-links a.mob{display:inline-block}
-    .nav-links a.mob,.nav-links a.cta-mini{font-size:13px;letter-spacing:.08em}
-    .nav-links a.cta-mini{color:var(--ink)}
+    .nav-links a:not(.mob){display:none}
+    .nav-links a.mob{font-size:13px;letter-spacing:.08em}
     .nav-links{gap:16px}
     .brand{font-size:23px}
     .lang button{font-size:12px;padding:5px 11px}
@@ -89,75 +90,84 @@
     .nav{gap:10px}
     .brand{font-size:21px;letter-spacing:.1em}
     .nav-links{gap:12px}
-    .nav-links a.mob,.nav-links a.cta-mini{font-size:12.5px;letter-spacing:.05em}
+    .nav-links a.mob{font-size:12.5px;letter-spacing:.05em}
     .lang{padding:2px}
     .lang button{padding:5px 9px;font-size:11.5px}
   }
-  @media (max-width:400px){
-    .nav-links a.mob[href="#works"]{display:none}
-  }
-  @media (max-width:340px){
-    .nav-links a.mob[href="#commissions"]{display:none}
-  }
+  @media (max-width:400px){ .nav-links a.mob[href="#works"]{display:none} }
+  @media (max-width:340px){ .nav-links a.mob[href="#commissions"]{display:none} }
 
   /* ---------- hero ---------- */
   .hero{
-    position:relative;min-height:100svh;display:flex;align-items:flex-end;
-    padding:130px 0 clamp(36px,6vh,72px);overflow:hidden;
+    position:relative;padding:clamp(96px,13vh,140px) 0 clamp(48px,7vw,96px);
+    background:radial-gradient(70% 60% at 85% 30%,rgba(125,108,158,.18),transparent 70%);
   }
-  .hero-bg{position:absolute;inset:0;z-index:0}
-  .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:64% 55%;opacity:.66}
-  .hero-bg::after{
-    content:"";position:absolute;inset:0;
-    background:
-      linear-gradient(180deg,rgba(15,14,17,.9) 0%,rgba(15,14,17,.25) 34%,rgba(15,14,17,.78) 76%,var(--bg) 100%),
-      linear-gradient(90deg,rgba(15,14,17,.85) 0%,rgba(15,14,17,.15) 62%),
-      radial-gradient(120% 80% at 12% 100%,rgba(125,108,158,.2),transparent 62%);
+  .hero-grid{
+    display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);
+    gap:clamp(28px,5vw,80px);align-items:center;
+    min-height:min(78vh,820px);
   }
-  .hero .wrap{position:relative;z-index:1;width:100%}
   .status{
     display:inline-flex;align-items:center;gap:9px;
-    font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);
+    font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);
     border:1px solid rgba(168,148,201,.35);border-radius:100px;padding:6px 14px 6px 12px;
-    background:rgba(168,148,201,.07);margin-bottom:24px;
+    background:rgba(168,148,201,.07);margin-bottom:26px;
   }
-  .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:pulse 2.4s infinite}
-  @keyframes pulse{70%{box-shadow:0 0 0 9px rgba(168,148,201,0)}100%{box-shadow:0 0 0 0 rgba(168,148,201,0)}}
+  .status .slots{color:var(--ink);opacity:.8}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:pulse 2.4s infinite;flex:none}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(168,148,201,.5)}70%{box-shadow:0 0 0 9px rgba(168,148,201,0)}100%{box-shadow:0 0 0 0 rgba(168,148,201,0)}}
   .hero h1{
-    font-size:clamp(70px,16vw,230px);letter-spacing:.02em;line-height:.82;
-    text-transform:uppercase;margin:0 0 14px -4px;
-    text-shadow:0 18px 60px rgba(0,0,0,.55),0 2px 24px rgba(0,0,0,.35);
+    font-size:clamp(64px,10vw,168px);letter-spacing:.03em;line-height:.85;
+    text-transform:uppercase;margin:0 0 18px -3px;
   }
   .hero .tag{
-    font-family:var(--serif);font-style:italic;font-size:clamp(20px,2.7vw,34px);
-    color:#d3cbe0;max-width:26ch;margin-bottom:32px;line-height:1.25;
+    font-family:var(--serif);font-style:italic;font-size:clamp(22px,2.3vw,34px);line-height:1.25;
+    color:#d3cbe0;max-width:22ch;margin:0 0 16px;
   }
-  html[lang="en"] .card .sub{display:none}
-  html[lang="en"] .card h3{margin-bottom:20px}
-  @media (max-width:860px){ .gallery{columns:2} }
-  @media (max-width:560px){ .gallery{columns:1} }
+  .hero .lede{color:var(--muted);font-size:15px;max-width:42ch;margin:0 0 32px}
   .hero-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
   .btn{
-    display:inline-flex;align-items:center;gap:10px;font-size:12.5px;letter-spacing:.1em;
-    text-transform:uppercase;padding:15px 28px;border-radius:100px;border:1px solid transparent;
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;font-size:12.5px;letter-spacing:.1em;
+    text-transform:uppercase;padding:15px 28px;border-radius:100px;border:1px solid transparent;cursor:pointer;
     transition:transform .25s ease,background .25s ease,color .25s ease,border-color .25s;
   }
   .btn:hover{transform:translateY(-2px)}
   .btn-solid{background:var(--accent);color:#100e14;font-weight:600}
   .btn-solid:hover{background:#bda9dd}
-  .btn-ghost{border-color:rgba(232,228,238,.28);color:var(--ink)}
+  .btn-ghost{border-color:rgba(232,228,238,.28);color:var(--ink);background:none}
   .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
-  .hero-actions{margin-bottom:0}
-  @media (max-width:600px){
-    .hero{min-height:92svh;padding-top:104px}
-    .hero-bg img{object-position:64% 52%}
+
+  .hero-art{
+    display:grid;grid-template-columns:1.05fr 1fr;grid-template-rows:1fr 1fr;
+    gap:var(--gap);height:min(72vh,760px);min-height:420px;
+  }
+  .hero-art button{
+    position:relative;padding:0;border:0;background:var(--bg-soft);cursor:zoom-in;
+    overflow:hidden;border-radius:4px;
+  }
+  .hero-art button:first-child{grid-row:1 / 3}
+  .hero-art img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1),filter .4s}
+  .hero-art button:hover img{transform:scale(1.035);filter:brightness(1.06)}
+  .hero-art button::after{content:"";position:absolute;inset:0;border:1px solid rgba(232,228,238,.08);border-radius:4px;pointer-events:none;transition:border-color .3s}
+  .hero-art button:hover::after{border-color:rgba(168,148,201,.55)}
+
+  @media (max-width:900px){
+    .hero{padding-top:96px}
+    .hero-grid{grid-template-columns:1fr;min-height:0;gap:34px}
+    .hero-art{height:auto;min-height:0;aspect-ratio:1.15/1}
+  }
+  @media (max-width:520px){
+    .hero h1{font-size:clamp(58px,19vw,84px)}
+    .hero .lede{font-size:14.5px;margin-bottom:26px}
+    .hero-actions .btn{flex:1 1 auto;padding:14px 20px}
+    .hero-art{aspect-ratio:1/1.02}
   }
 
   /* ---------- sections ---------- */
-  .sec{padding:clamp(56px,8vw,120px) 0}
+  .sec{padding:clamp(60px,8vw,120px) 0}
   .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-bottom:clamp(24px,3.4vw,46px)}
-  .sec-head h2{font-size:clamp(38px,5.2vw,76px);letter-spacing:.01em}
-  .sec-head p{max-width:40ch;color:var(--muted);font-size:14.5px;margin:0}
+  .sec-head h2{font-size:clamp(40px,5.2vw,76px);letter-spacing:.01em}
+  .sec-head p{max-width:42ch;color:var(--muted);font-size:14.5px;margin:0}
   @media (max-width:720px){
     .sec-head{display:block}
     .sec-head p{margin-top:14px}
@@ -166,7 +176,10 @@
   /* ---------- gallery ---------- */
   .gallery{columns:3;column-gap:var(--gap)}
   .gallery .g-item{margin:0 0 var(--gap)}
+  @media (max-width:860px){ .gallery{columns:2} }
+  @media (max-width:560px){ .gallery{columns:1} }
   .js .gallery{columns:auto;display:block;position:relative;min-height:200px}
+  .js .gallery:not(.all) .g-item.more{display:none}
   .g-item{
     display:block;break-inside:avoid;margin:0;
     position:relative;cursor:zoom-in;overflow:hidden;
@@ -180,6 +193,8 @@
   .g-item:hover img{transform:scale(1.03);filter:brightness(1.06)}
   .g-item::after{content:"";position:absolute;inset:0;border:1px solid rgba(232,228,238,0);transition:border-color .3s;pointer-events:none}
   .g-item:hover::after{border-color:rgba(168,148,201,.55)}
+  .more-wrap{display:none;justify-content:center;margin-top:clamp(22px,3vw,36px)}
+  .js .more-wrap{display:flex}
 
   /* ---------- lightbox ---------- */
   .lb{
@@ -213,70 +228,105 @@
     .lb-count{bottom:22px;font-size:10px}
   }
 
-  /* ---------- commissions ---------- */
+  /* ---------- prices ---------- */
   .comm{background:linear-gradient(180deg,var(--bg) 0%,#131118 50%,var(--bg) 100%)}
   .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap)}
-  @media (max-width:900px){.cards{grid-template-columns:1fr}}
+  @media (max-width:980px){.cards{grid-template-columns:1fr 1fr}}
+  @media (max-width:680px){.cards{grid-template-columns:1fr}}
   .card{
-    border:1px solid var(--line);border-radius:4px;padding:clamp(20px,2.4vw,32px);
-    background:rgba(255,255,255,.015);transition:border-color .3s,transform .3s,background .3s;
+    border:1px solid var(--line);border-radius:6px;overflow:hidden;
+    background:var(--bg-card);transition:border-color .3s,transform .3s;
     display:flex;flex-direction:column;
   }
-  .card:hover{border-color:rgba(168,148,201,.5);transform:translateY(-3px);background:rgba(168,148,201,.04)}
-  .card h3{font-size:clamp(25px,2.8vw,32px);letter-spacing:.04em;text-transform:uppercase}
-  .card .sub{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:6px 0 20px}
+  .card:hover{border-color:rgba(168,148,201,.5);transform:translateY(-3px)}
+  .card-ex{
+    position:relative;display:block;width:100%;padding:0;border:0;cursor:zoom-in;
+    aspect-ratio:16/10;overflow:hidden;background:var(--bg-soft);
+  }
+  .card-ex img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+  .card:hover .card-ex img{transform:scale(1.03)}
+  .card-ex .ex-label{
+    position:absolute;left:12px;bottom:12px;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+    background:rgba(13,12,16,.75);border:1px solid var(--line);border-radius:100px;padding:4px 10px;color:#d8d2e3;
+    -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  }
+  .card-body{padding:clamp(20px,2.2vw,30px);display:flex;flex-direction:column;flex:1}
+  .card h3{font-size:clamp(26px,2.6vw,34px);letter-spacing:.03em;text-transform:uppercase;margin-bottom:6px}
+  .card .scope{font-size:13px;color:var(--muted);margin:0 0 18px}
   .tier{display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding:11px 0;border-top:1px dashed rgba(232,228,238,.13)}
-  .tier:last-of-type{border-bottom:1px dashed rgba(232,228,238,.13)}
+  .tier:last-child{border-bottom:1px dashed rgba(232,228,238,.13)}
   .tier span{font-size:14px;color:#c9c3d6}
-  .tier b{font-family:var(--serif);font-size:23px;font-weight:600;color:var(--accent);white-space:nowrap}
-  .card .note{margin-top:auto;padding-top:18px;font-size:12.5px;color:var(--muted)}
+  .tier b{font-family:var(--serif);font-size:24px;font-weight:600;color:var(--accent);white-space:nowrap}
+
+  .levels{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);margin-top:clamp(18px,2.4vw,28px)}
+  @media (max-width:680px){.levels{grid-template-columns:1fr}}
+  .level{padding:18px 20px;border:1px solid var(--line);border-radius:6px}
+  .level h4{margin:0 0 4px;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+  .level p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.55}
+
   .comm-foot{
     display:flex;flex-wrap:wrap;gap:14px 30px;align-items:center;justify-content:space-between;
     margin-top:clamp(22px,3vw,36px);padding-top:22px;border-top:1px solid var(--line);
   }
-  .comm-foot p{margin:0;color:var(--muted);font-size:14px;max-width:70ch}
+  .comm-foot p{margin:0;color:var(--muted);font-size:14px;max-width:78ch}
   .comm-foot .pay{font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);white-space:nowrap}
 
-  /* ---------- process ---------- */
-  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,2.4vw,34px);counter-reset:s}
-  @media (max-width:900px){.steps{grid-template-columns:1fr 1fr}}
-  @media (max-width:520px){.steps{grid-template-columns:1fr}}
-  .step{counter-increment:s;padding-top:18px;border-top:1px solid var(--line)}
-  .step::before{
-    content:"0" counter(s);display:block;font-family:var(--serif);font-size:15px;
-    color:var(--accent-dim);letter-spacing:.1em;margin-bottom:10px;
-  }
-  .step h3{font-family:var(--sans);font-size:14px;font-weight:600;letter-spacing:.05em;margin:0 0 8px}
-  .step p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.55}
+  /* ---------- terms ---------- */
+  .terms-top{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,80px)}
+  @media (max-width:900px){.terms-top{grid-template-columns:1fr}}
+  .sub-h{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 18px}
+  .steps{list-style:none;margin:0;padding:0;counter-reset:s}
+  .steps li{counter-increment:s;display:grid;grid-template-columns:44px 1fr;gap:4px 10px;padding:16px 0;border-top:1px solid var(--line)}
+  .steps li:last-child{border-bottom:1px solid var(--line)}
+  .steps li::before{content:"0" counter(s);grid-row:1 / 3;font-family:var(--serif);font-size:20px;color:var(--accent-dim);line-height:1.2}
+  .steps b{font-weight:600;font-size:14.5px}
+  .steps span{font-size:14px;color:var(--muted);line-height:1.55}
+  .ww{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  @media (max-width:520px){.ww{grid-template-columns:1fr}}
+  .ww ul{list-style:none;margin:0;padding:0}
+  .ww li{position:relative;padding:7px 0 7px 26px;font-size:14.5px;color:#cfc9dc;line-height:1.45}
+  .ww li::before{position:absolute;left:0;top:7px;font-size:14px}
+  .ww .yes li::before{content:"✓";color:var(--accent)}
+  .ww .no li::before{content:"✕";color:#8b8499}
+  .ww .no li{color:var(--muted)}
 
-  /* ---------- about ---------- */
-  .about{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(26px,5vw,90px);align-items:center}
-  @media (max-width:860px){.about{grid-template-columns:1fr}}
-  .about-art{border-radius:3px;border:1px solid var(--line);overflow:hidden;max-width:560px}
+  .faq{margin-top:clamp(40px,5vw,64px);display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(24px,4vw,64px)}
+  @media (max-width:900px){.faq{grid-template-columns:1fr}}
+  .faq details{border-top:1px solid var(--line)}
+  .faq summary{
+    list-style:none;cursor:pointer;padding:18px 34px 18px 0;position:relative;
+    font-size:15.5px;font-weight:500;
+  }
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{
+    content:"+";position:absolute;right:4px;top:50%;transform:translateY(-50%);
+    font-size:22px;font-weight:300;color:var(--accent);transition:transform .3s;
+  }
+  .faq details[open] summary::after{transform:translateY(-50%) rotate(45deg)}
+  .faq details p{margin:-4px 0 18px;color:var(--muted);font-size:14.5px;max-width:60ch}
+
+  /* ---------- about + contact ---------- */
+  .about{border-top:1px solid var(--line);background:radial-gradient(80% 90% at 80% 10%,rgba(125,108,158,.15),transparent 65%)}
+  .about-grid{display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);gap:clamp(28px,5vw,90px);align-items:center}
+  @media (max-width:860px){.about-grid{grid-template-columns:1fr}}
+  .about-art{border-radius:4px;border:1px solid var(--line);overflow:hidden;max-width:520px}
   .about-art img{width:100%;height:auto}
-  .about-copy p{color:#bdb6cb;margin:0 0 16px;font-size:15.5px;max-width:56ch}
-  .about-copy .lead{font-family:var(--serif);font-size:clamp(22px,2.4vw,30px);line-height:1.35;color:var(--ink);font-style:italic}
-  .fact-list{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:16px clamp(26px,4vw,56px);margin:28px 0 0;padding-top:24px;border-top:1px solid var(--line)}
-  .fact{margin:0}
-  @media (max-width:520px){.fact-list{grid-template-columns:1fr 1fr}}
-  .fact dt{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-dim);margin-bottom:4px}
-  .fact dd{margin:0;font-size:14.5px;color:#cfc9dc}
-
-  /* ---------- contact ---------- */
-  .contact{border-top:1px solid var(--line);background:radial-gradient(90% 120% at 50% 0%,rgba(125,108,158,.16),transparent 65%)}
-  .contact h2{font-size:clamp(42px,7.4vw,104px);text-transform:uppercase;letter-spacing:.02em;line-height:.92}
-  .contact h2 em{font-style:italic;color:var(--accent);text-transform:none}
-  .links{display:grid;gap:12px;margin-top:clamp(28px,4vw,48px);grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
-  .link{
-    display:flex;align-items:center;justify-content:space-between;gap:12px;
-    padding:18px 20px;border:1px solid var(--line);border-radius:4px;
-    transition:.28s;background:rgba(255,255,255,.012);
+  @media (max-width:860px){.about-art{max-width:420px}}
+  .about-copy .lead{font-family:var(--serif);font-size:clamp(28px,3vw,42px);line-height:1.2;margin:0 0 18px}
+  .about-copy .lead em{color:var(--accent)}
+  .about-copy p{color:#bdb6cb;margin:0 0 14px;font-size:15.5px;max-width:58ch}
+  .contact-box{margin-top:30px;padding-top:28px;border-top:1px solid var(--line)}
+  .contact-box h2{font-size:clamp(34px,4.4vw,60px);text-transform:uppercase;letter-spacing:.02em;line-height:.95;margin:0 0 12px}
+  .contact-box h2 em{font-style:italic;color:var(--accent);text-transform:none}
+  .contact-box .note{color:var(--muted);font-size:14.5px;margin:0 0 24px}
+  .socials{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+  .socials a{
+    font-size:13px;padding:8px 14px;border:1px solid var(--line);border-radius:100px;color:#cfc9dc;
+    transition:.25s;
   }
-  .link:hover{border-color:var(--accent);background:rgba(168,148,201,.07);transform:translateY(-2px)}
-  .link .n{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
-  .link .h{font-size:15px;margin-top:3px;word-break:break-word}
-  .link .ar{color:var(--accent);font-size:18px;transition:transform .28s;flex:none}
-  .link:hover .ar{transform:translate(3px,-3px)}
+  .socials a:hover{border-color:var(--accent);color:var(--accent)}
+  .socials a small{color:var(--dim);font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin-right:6px}
+
   footer{padding:30px 0 38px;border-top:1px solid var(--line);font-size:12.5px;color:#918a9e}
   footer .wrap{display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between;align-items:center}
 
@@ -293,9 +343,9 @@
   <div class="nav-links">
     <a href="#works" class="mob" data-en="Works" data-ru="Работы">Works</a>
     <a href="#commissions" class="mob" data-en="Prices" data-ru="Прайс">Prices</a>
-    <a href="#process" data-en="Process" data-ru="Как я работаю">Process</a>
+    <a href="#terms" data-en="Terms" data-ru="Условия">Terms</a>
     <a href="#about" data-en="About" data-ru="Обо мне">About</a>
-    <a href="#contact" class="cta-mini" data-en="Order" data-ru="Заказать">Order</a>
+    <a href="#contact" class="mob cta-mini" data-en="Order" data-ru="Заказать">Order</a>
     <div class="lang" role="group" aria-label="Language">
       <button type="button" data-lang="ru">RU</button>
       <button type="button" data-lang="en" class="on">EN</button>
@@ -303,185 +353,274 @@
   </div>
 </nav>
 
+<!-- ============ HERO ============ -->
 <header class="hero" id="top">
-  <div class="hero-bg"><img src="assets/hero.jpg" alt="" fetchpriority="high"></div>
-  <div class="wrap">
-    <div class="status">
-      <i class="dot"></i>
-      <span data-en="Commissions open" data-ru="Коммишки открыты">Commissions open</span>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <!-- СЛОТЫ: поменяйте числа в data-free / data-total -->
+      <div class="status" id="status" data-free="3" data-total="5">
+        <i class="dot"></i>
+        <span data-en="Commissions open" data-ru="Заказы открыты">Commissions open</span>
+        <span class="slots" id="slots">· 3 of 5 slots</span>
+      </div>
+      <h1>Sherr</h1>
+      <p class="tag" data-en="Digital illustrations and characters with a mood"
+         data-ru="Цифровые иллюстрации и&nbsp;персонажи с&nbsp;настроением">Digital illustrations and characters with a mood</p>
+      <p class="lede" data-en="Portraits, OCs and fan art: from a quick sketch to a fully rendered piece."
+         data-ru="Портреты, оригинальные персонажи и&nbsp;фан-арт: от&nbsp;быстрого скетча до&nbsp;полного рендера.">Portraits, OCs and fan art: from a quick sketch to a fully rendered piece.</p>
+      <div class="hero-actions">
+        <a class="btn btn-solid" href="#commissions" data-en="Prices &amp; terms" data-ru="Прайс и&nbsp;условия">Prices &amp; terms</a>
+        <a class="btn btn-ghost" href="#works" data-en="View works" data-ru="Смотреть работы">View works</a>
+      </div>
     </div>
-    <h1>SHERR</h1>
-    <p class="tag" data-en="Digital illustrations and characters"
-       data-ru="Цифровые иллюстрации и&nbsp;персонажи">Digital illustrations and characters</p>
-    <div class="hero-actions">
-      <a class="btn btn-solid" href="#commissions" data-en="Prices &amp; terms" data-ru="Прайс и&nbsp;условия">Prices &amp; terms</a>
-      <a class="btn btn-ghost" href="#works" data-en="View works" data-ru="Смотреть работы">View works</a>
+    <div class="hero-art">
+      <button type="button" data-open="assets/works/w05.jpg" aria-label="Open artwork"><img src="assets/hero/h1.jpg" width="961" height="1202" alt="Illustration — warrior in a winged helmet" fetchpriority="high"></button>
+      <button type="button" data-open="assets/works/w01.jpg" aria-label="Open artwork"><img src="assets/hero/h2.jpg" width="1000" height="592" alt="Illustration — vampire in neon light"></button>
+      <button type="button" data-open="assets/works/w02.jpg" aria-label="Open artwork"><img src="assets/hero/h3.jpg" width="1000" height="708" alt="Illustration — hooded figure with a sparkler"></button>
     </div>
   </div>
 </header>
 
 <main>
 
+  <!-- ============ WORKS ============ -->
   <section class="sec" id="works">
     <div class="wrap">
       <div class="sec-head">
         <div>
-          <div class="eyebrow" style="margin-bottom:14px" data-en="Selected" data-ru="Избранное">Selected</div>
+          <div class="eyebrow" data-en="Portfolio" data-ru="Портфолио">Portfolio</div>
           <h2 data-en="Works" data-ru="Работы">Works</h2>
         </div>
         <p data-en="Characters, portraits and scenes. Click a piece to view it full size."
-           data-ru="Персонажи, портреты и сцены. Нажми на работу, чтобы открыть её целиком.">Characters, portraits and scenes. Click a piece to view it full size.</p>
+           data-ru="Персонажи, портреты и&nbsp;сцены. Нажми на&nbsp;работу, чтобы открыть её целиком.">Characters, portraits and scenes. Click a piece to view it full size.</p>
       </div>
 
+      <!-- Порядок = порядок в сетке. Первые 8 видны сразу, с классом "more" — после кнопки -->
       <div class="gallery" id="gallery">
+        <figure class="g-item"><img src="assets/thumbs/w05.jpg" width="760" height="537" loading="lazy" decoding="async" data-full="assets/works/w05.jpg" alt="Illustration — warrior in a winged helmet"></figure>
         <figure class="g-item"><img src="assets/thumbs/w01.jpg" width="760" height="450" loading="lazy" decoding="async" data-full="assets/works/w01.jpg" alt="Illustration — vampire in neon light"></figure>
-        <figure class="g-item"><img src="assets/thumbs/w02.jpg" width="760" height="538" loading="lazy" decoding="async" data-full="assets/works/w02.jpg" alt="Illustration — figure with sparks"></figure>
-        <figure class="g-item"><img src="assets/thumbs/w14.jpg" width="760" height="318" loading="lazy" decoding="async" data-full="assets/works/w14.jpg" alt="Illustration — sci-fi scene"></figure>
-        <figure class="g-item"><img src="assets/thumbs/w04.jpg" width="608" height="760" loading="lazy" decoding="async" data-full="assets/works/w04.jpg" alt="Illustration — figure on the floor"></figure>
-        <figure class="g-item"><img src="assets/thumbs/w05.jpg" width="760" height="537" loading="lazy" decoding="async" data-full="assets/works/w05.jpg" alt="Illustration — warrior with halberd"></figure>
-        <figure class="g-item"><img src="assets/thumbs/w06.jpg" width="760" height="737" loading="lazy" decoding="async" data-full="assets/works/w06.jpg" alt="Illustration — reading in warm light"></figure>
-        <figure class="g-item"><img src="assets/thumbs/w07.jpg" width="713" height="760" loading="lazy" decoding="async" data-full="assets/works/w07.jpg" alt="Illustration — portrait with violet hair"></figure>
-        <figure class="g-item"><img src="assets/thumbs/w08.jpg" width="760" height="536" loading="lazy" decoding="async" data-full="assets/works/w08.jpg" alt="Illustration — two figures in hats"></figure>
-        <figure class="g-item"><img src="assets/thumbs/w09.jpg" width="538" height="760" loading="lazy" decoding="async" data-full="assets/works/w09.jpg" alt="Illustration — character with a bowl"></figure>
-        <figure class="g-item"><img src="assets/thumbs/w10.jpg" width="760" height="537" loading="lazy" decoding="async" data-full="assets/works/w10.jpg" alt="Illustration — two characters"></figure>
-        <figure class="g-item"><img src="assets/thumbs/w11.jpg" width="760" height="608" loading="lazy" decoding="async" data-full="assets/works/w11.jpg" alt="Sketch — two characters"></figure>
-        <figure class="g-item"><img src="assets/thumbs/w12.jpg" width="642" height="760" loading="lazy" decoding="async" data-full="assets/works/w12.jpg" alt="Illustration — elf"></figure>
-        <figure class="g-item"><img src="assets/thumbs/w13.jpg" width="760" height="760" loading="lazy" decoding="async" data-full="assets/works/w13.jpg" alt="Illustration — seated figure in neon"></figure>
-        <figure class="g-item"><img src="assets/thumbs/w03.jpg" width="537" height="760" loading="lazy" decoding="async" data-full="assets/works/w03.jpg" alt="Illustration — figure in a park"></figure>
+        <figure class="g-item"><img src="assets/thumbs/w12.jpg" width="642" height="760" loading="lazy" decoding="async" data-full="assets/works/w12.jpg" alt="Illustration — elf, portrait and full figure"></figure>
+        <figure class="g-item"><img src="assets/thumbs/w14.jpg" width="760" height="318" loading="lazy" decoding="async" data-full="assets/works/w14.jpg" alt="Illustration — sci-fi pair in the snow"></figure>
+        <figure class="g-item"><img src="assets/thumbs/w02.jpg" width="760" height="538" loading="lazy" decoding="async" data-full="assets/works/w02.jpg" alt="Illustration — hooded figure with a sparkler"></figure>
+        <figure class="g-item"><img src="assets/thumbs/w10.jpg" width="760" height="537" loading="lazy" decoding="async" data-full="assets/works/w10.jpg" alt="Illustration — two characters with a wizard hat"></figure>
+        <figure class="g-item"><img src="assets/thumbs/w08.jpg" width="760" height="536" loading="lazy" decoding="async" data-full="assets/works/w08.jpg" alt="Illustration — two silver-haired characters"></figure>
+        <figure class="g-item"><img src="assets/thumbs/w06.jpg" width="760" height="737" loading="lazy" decoding="async" data-full="assets/works/w06.jpg" alt="Illustration — reading a book"></figure>
+        <figure class="g-item more"><img src="assets/thumbs/w13.jpg" width="760" height="760" loading="lazy" decoding="async" data-full="assets/works/w13.jpg" alt="Illustration — sitting on the floor in soft light"></figure>
+        <figure class="g-item more"><img src="assets/thumbs/w09.jpg" width="538" height="760" loading="lazy" decoding="async" data-full="assets/works/w09.jpg" alt="Illustration — eating watermelon"></figure>
+        <figure class="g-item more"><img src="assets/thumbs/w03.jpg" width="537" height="760" loading="lazy" decoding="async" data-full="assets/works/w03.jpg" alt="Illustration — in sunglasses, in the park"></figure>
+        <figure class="g-item more"><img src="assets/thumbs/w04.jpg" width="608" height="760" loading="lazy" decoding="async" data-full="assets/works/w04.jpg" alt="Illustration — lying on the floor in a beam of light"></figure>
+        <figure class="g-item more"><img src="assets/thumbs/w11.jpg" width="760" height="608" loading="lazy" decoding="async" data-full="assets/works/w11.jpg" alt="Sketch — two characters"></figure>
+      </div>
+      <div class="more-wrap">
+        <button class="btn btn-ghost" type="button" id="more-btn"
+                data-en="Show all works" data-ru="Показать все работы">Show all works</button>
       </div>
     </div>
   </section>
 
+  <!-- ============ PRICES ============ -->
   <section class="sec comm" id="commissions">
     <div class="wrap">
       <div class="sec-head">
         <div>
-          <div class="eyebrow" style="margin-bottom:14px" data-en="Commission" data-ru="Заказ иллюстрации">Commission</div>
+          <div class="eyebrow" data-en="Commissions" data-ru="Заказ иллюстрации">Commissions</div>
           <h2 data-en="Prices" data-ru="Прайс">Prices</h2>
         </div>
-        <p data-en="Take just the sketch, flat colours or a full render. Payment is 100% upfront."
-           data-ru="Можно взять только скетч, только заливку или полный рендер. Оплата — 100% предоплата.">Take just the sketch, flat colours or a full render. Payment is 100% upfront.</p>
+        <p data-en="One character on a simple background. Pick the size and the level of finish."
+           data-ru="Один персонаж на&nbsp;простом фоне. Выбери размер и&nbsp;степень проработки.">One character on a simple background. Pick the size and the level of finish.</p>
       </div>
 
+      <!-- ЦЕНЫ: data-usd — английская версия, data-rub — русская -->
       <div class="cards">
         <article class="card">
-          <h3>Bust</h3>
-          <div class="sub" data-en="Bust" data-ru="Бюст">Bust</div>
-          <div class="tier"><span data-en="Sketch" data-ru="Скетч">Sketch</span><b data-usd="15" data-rub="600">$15</b></div>
-          <div class="tier"><span data-en="Flat" data-ru="Флэт">Flat</span><b data-usd="25" data-rub="1300">$25</b></div>
-          <div class="tier"><span data-en="Render" data-ru="Рендер">Render</span><b data-usd="40" data-rub="2200">$40</b></div>
-          <p class="note" data-en="Chest-up, focus on face and lighting." data-ru="По грудь, акцент на лице и свете.">Chest-up, focus on face and lighting.</p>
+          <button class="card-ex" type="button" data-open="assets/works/w01.jpg" aria-label="Open example">
+            <img src="assets/thumbs/w01.jpg" width="760" height="450" loading="lazy" alt="Bust example">
+            <span class="ex-label" data-en="Example" data-ru="Пример">Example</span>
+          </button>
+          <div class="card-body">
+            <h3 data-en="Bust" data-ru="Бюст">Bust</h3>
+            <p class="scope" data-en="Chest-up, focus on face and lighting." data-ru="По грудь, акцент на&nbsp;лице и&nbsp;свете.">Chest-up, focus on face and lighting.</p>
+            <div class="tiers">
+              <div class="tier"><span data-en="Sketch" data-ru="Скетч">Sketch</span><b data-usd="15" data-rub="600">$15</b></div>
+              <div class="tier"><span data-en="Flat" data-ru="Флэт">Flat</span><b data-usd="25" data-rub="1300">$25</b></div>
+              <div class="tier"><span data-en="Render" data-ru="Рендер">Render</span><b data-usd="40" data-rub="2200">$40</b></div>
+            </div>
+          </div>
         </article>
 
         <article class="card">
-          <h3>Half&nbsp;body</h3>
-          <div class="sub" data-en="Half body" data-ru="Полурост">Half body</div>
-          <div class="tier"><span data-en="Sketch" data-ru="Скетч">Sketch</span><b data-usd="20" data-rub="900">$20</b></div>
-          <div class="tier"><span data-en="Flat" data-ru="Флэт">Flat</span><b data-usd="35" data-rub="2000">$35</b></div>
-          <div class="tier"><span data-en="Render" data-ru="Рендер">Render</span><b data-usd="60" data-rub="3300">$60</b></div>
-          <p class="note" data-en="Thigh-up, hands and pose included." data-ru="До бёдер, руки и поза включены.">Thigh-up, hands and pose included.</p>
+          <button class="card-ex" type="button" data-open="assets/works/w06.jpg" aria-label="Open example">
+            <img src="assets/thumbs/w06.jpg" width="760" height="737" loading="lazy" alt="Half body example" style="object-position:50% 35%">
+            <span class="ex-label" data-en="Example" data-ru="Пример">Example</span>
+          </button>
+          <div class="card-body">
+            <h3 data-en="Half body" data-ru="Полурост">Half body</h3>
+            <p class="scope" data-en="Thigh-up, hands and pose included." data-ru="До&nbsp;бёдер, руки и&nbsp;поза включены.">Thigh-up, hands and pose included.</p>
+            <div class="tiers">
+              <div class="tier"><span data-en="Sketch" data-ru="Скетч">Sketch</span><b data-usd="20" data-rub="900">$20</b></div>
+              <div class="tier"><span data-en="Flat" data-ru="Флэт">Flat</span><b data-usd="35" data-rub="2000">$35</b></div>
+              <div class="tier"><span data-en="Render" data-ru="Рендер">Render</span><b data-usd="60" data-rub="3300">$60</b></div>
+            </div>
+          </div>
         </article>
 
         <article class="card">
-          <h3>Full&nbsp;body</h3>
-          <div class="sub" data-en="Full body" data-ru="Полный рост">Full body</div>
-          <div class="tier"><span data-en="Sketch" data-ru="Скетч">Sketch</span><b data-usd="30" data-rub="1300">$30</b></div>
-          <div class="tier"><span data-en="Flat" data-ru="Флэт">Flat</span><b data-usd="50" data-rub="2800">$50</b></div>
-          <div class="tier"><span data-en="Render" data-ru="Рендер">Render</span><b data-usd="80" data-rub="4800">$80</b></div>
-          <p class="note" data-en="The whole figure, pose and attitude." data-ru="Фигура целиком, поза и характер.">The whole figure, pose and attitude.</p>
+          <button class="card-ex" type="button" data-open="assets/works/w13.jpg" aria-label="Open example">
+            <img src="assets/thumbs/w13.jpg" width="760" height="760" loading="lazy" alt="Full body example" style="object-position:50% 60%">
+            <span class="ex-label" data-en="Example" data-ru="Пример">Example</span>
+          </button>
+          <div class="card-body">
+            <h3 data-en="Full body" data-ru="Полный рост">Full body</h3>
+            <p class="scope" data-en="The whole figure, pose and attitude." data-ru="Фигура целиком, поза и&nbsp;характер.">The whole figure, pose and attitude.</p>
+            <div class="tiers">
+              <div class="tier"><span data-en="Sketch" data-ru="Скетч">Sketch</span><b data-usd="30" data-rub="1300">$30</b></div>
+              <div class="tier"><span data-en="Flat" data-ru="Флэт">Flat</span><b data-usd="50" data-rub="2800">$50</b></div>
+              <div class="tier"><span data-en="Render" data-ru="Рендер">Render</span><b data-usd="80" data-rub="4800">$80</b></div>
+            </div>
+          </div>
         </article>
+      </div>
+
+      <div class="levels">
+        <div class="level">
+          <h4 data-en="Sketch" data-ru="Скетч">Sketch</h4>
+          <p data-en="Clean, readable sketch with light shading. Great for quick ideas and references."
+             data-ru="Аккуратный читаемый скетч с&nbsp;лёгкой светотенью. Для идей и&nbsp;референсов.">Clean, readable sketch with light shading. Great for quick ideas and references.</p>
+        </div>
+        <div class="level">
+          <h4 data-en="Flat" data-ru="Флэт">Flat</h4>
+          <p data-en="Lineart and flat colours with simple shading. Bright and graphic."
+             data-ru="Лайн и&nbsp;плоские цвета с&nbsp;простой тенью. Ярко и&nbsp;графично.">Lineart and flat colours with simple shading. Bright and graphic.</p>
+        </div>
+        <div class="level">
+          <h4 data-en="Render" data-ru="Рендер">Render</h4>
+          <p data-en="Full painting: volume, dramatic light, colour and texture, like most pieces above."
+             data-ru="Полная покраска: объём, драматичный свет, цвет и&nbsp;фактура — как в&nbsp;большинстве работ выше.">Full painting: volume, dramatic light, colour and texture, like most pieces above.</p>
+        </div>
       </div>
 
       <div class="comm-foot">
         <p data-en="Simple background is included. Extra character +70%, detailed background or complex armour from +$15, commercial use ×2. NSFW commissions are discussed in DMs."
-           data-ru="Простой фон входит в&nbsp;цену. Второй персонаж +70%, детальный фон или сложные доспехи от&nbsp;+700&nbsp;₽, коммерческое использование ×2. NSFW-коммишки обсуждаются в&nbsp;личных сообщениях.">Simple background is included. Extra character +70%, detailed background or complex armour from +$15, commercial use ×2. NSFW commissions are discussed in DMs.</p>
+           data-ru="Простой фон входит в&nbsp;цену. Второй персонаж +70%, детальный фон или сложные доспехи от&nbsp;+700&nbsp;₽, коммерческое использование ×2. NSFW-заказы обсуждаются в&nbsp;личных сообщениях.">Simple background is included. Extra character +70%, detailed background or complex armour from +$15, commercial use ×2. NSFW commissions are discussed in DMs.</p>
         <span class="pay" data-en="100% upfront" data-ru="100% предоплата">100% upfront</span>
       </div>
     </div>
   </section>
 
-  <section class="sec" id="process">
+  <!-- ============ TERMS ============ -->
+  <section class="sec" id="terms">
     <div class="wrap">
       <div class="sec-head">
         <div>
-          <div class="eyebrow" style="margin-bottom:14px" data-en="How it works" data-ru="Порядок работы">How it works</div>
-          <h2 data-en="Process" data-ru="Как я работаю">Process</h2>
+          <div class="eyebrow" data-en="Before you order" data-ru="Перед заказом">Before you order</div>
+          <h2 data-en="Terms" data-ru="Условия">Terms</h2>
         </div>
       </div>
 
-      <div class="steps">
-        <div class="step">
-          <h3 data-en="Request" data-ru="Заявка">Request</h3>
-          <p data-en="DM me on whichever platform you prefer — Telegram, Instagram, X. References are required."
-             data-ru="Пиши в ЛС любой удобной соцсети — телеграм, инста, твиттер. Референсы обязательны.">DM me on whichever platform you prefer — Telegram, Instagram, X. References are required.</p>
+      <div class="terms-top">
+        <div>
+          <h3 class="sub-h" data-en="How it works" data-ru="Как проходит заказ">How it works</h3>
+          <ol class="steps">
+            <li><b data-en="Request" data-ru="Заявка">Request</b>
+              <span data-en="DM me on Telegram, Instagram or X with your references and idea."
+                    data-ru="Пиши в&nbsp;Telegram, Instagram или X&nbsp;— с&nbsp;референсами и&nbsp;идеей.">DM me on Telegram, Instagram or X with your references and idea.</span></li>
+            <li><b data-en="Booking" data-ru="Бронь">Booking</b>
+              <span data-en="I confirm the price and deadline. After 100% payment your piece goes into the queue."
+                    data-ru="Подтверждаю цену и&nbsp;срок. После 100% оплаты работа встаёт в&nbsp;очередь.">I confirm the price and deadline. After 100% payment your piece goes into the queue.</span></li>
+            <li><b data-en="Sketch &amp; revisions" data-ru="Скетч и&nbsp;правки">Sketch &amp; revisions</b>
+              <span data-en="I send the sketch for approval. Two free revisions at this stage."
+                    data-ru="Присылаю скетч на&nbsp;согласование. На&nbsp;этом этапе — 2&nbsp;бесплатные правки.">I send the sketch for approval. Two free revisions at this stage.</span></li>
+            <li><b data-en="Delivery" data-ru="Финал">Delivery</b>
+              <span data-en="Final PNG or JPG at 300 dpi. The .clip source file on request."
+                    data-ru="Готовый PNG или JPG, 300&nbsp;dpi. Исходник .clip — по&nbsp;запросу.">Final PNG or JPG at 300 dpi. The .clip source file on request.</span></li>
+          </ol>
         </div>
-        <div class="step">
-          <h3 data-en="Booking" data-ru="Бронь">Booking</h3>
-          <p data-en="I confirm the price and deadline, take 100% upfront — and your piece goes into the queue."
-             data-ru="Подтверждаю цену и срок, беру 100% предоплату — и ставлю работу в очередь.">I confirm the price and deadline, take 100% upfront — and your piece goes into the queue.</p>
+
+        <div class="ww">
+          <div>
+            <h3 class="sub-h" data-en="I draw" data-ru="Рисую">I draw</h3>
+            <ul class="yes">
+              <li data-en="Original characters" data-ru="Оригинальных персонажей">Original characters</li>
+              <li data-en="Fan art" data-ru="Фан-арт">Fan art</li>
+              <li data-en="Portraits and couples" data-ru="Портреты и&nbsp;пары">Portraits and couples</li>
+              <li data-en="Fantasy: elves, armour, costumes" data-ru="Фэнтези: эльфы, доспехи, костюмы">Fantasy: elves, armour, costumes</li>
+              <li data-en="Everyday, moody scenes" data-ru="Бытовые атмосферные сцены">Everyday, moody scenes</li>
+              <li data-en="NSFW — discussed in DMs" data-ru="NSFW — обсуждается в&nbsp;ЛС">NSFW — discussed in DMs</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="sub-h" data-en="I don&rsquo;t draw" data-ru="Не рисую">I don&rsquo;t draw</h3>
+            <ul class="no">
+              <li data-en="Complex mecha and vehicles" data-ru="Сложных мехов и&nbsp;технику">Complex mecha and vehicles</li>
+              <li data-en="Hateful or offensive content" data-ru="Контент с&nbsp;ненавистью и&nbsp;оскорблениями">Hateful or offensive content</li>
+              <li data-en="Art for NFTs or AI training" data-ru="Арт для NFT и&nbsp;обучения ИИ">Art for NFTs or AI training</li>
+              <li data-en="Copies of other artists&rsquo; styles" data-ru="Копии стиля других художников">Copies of other artists&rsquo; styles</li>
+            </ul>
+          </div>
         </div>
-        <div class="step">
-          <h3 data-en="Sketch &amp; revisions" data-ru="Скетч и правки">Sketch &amp; revisions</h3>
-          <p data-en="I send the sketch for approval. Two free revisions at this stage."
-             data-ru="Присылаю скетч на согласование. На этом этапе — 2 бесплатные правки.">I send the sketch for approval. Two free revisions at this stage.</p>
-        </div>
-        <div class="step">
-          <h3 data-en="Delivery" data-ru="Финал">Delivery</h3>
-          <p data-en="Final file in PNG or JPG at 300 dpi. The .clip source on request."
-             data-ru="Готовый файл PNG или JPG, 300 dpi. Исходник .clip — по запросу.">Final file in PNG or JPG at 300 dpi. The .clip source on request.</p>
-        </div>
+      </div>
+
+      <div class="faq">
+        <details>
+          <summary data-en="How long does it take?" data-ru="Сколько ждать?">How long does it take?</summary>
+          <p data-en="Usually 1–3 weeks depending on the size and the queue. I&rsquo;ll give you an exact deadline before payment."
+             data-ru="Обычно 1–3 недели в&nbsp;зависимости от&nbsp;размера и&nbsp;очереди. Точный срок называю до&nbsp;оплаты.">Usually 1–3 weeks depending on the size and the queue. I&rsquo;ll give you an exact deadline before payment.</p>
+        </details>
+        <details>
+          <summary data-en="What about revisions?" data-ru="Что с&nbsp;правками?">What about revisions?</summary>
+          <p data-en="Two free revisions at the sketch stage. Small fixes after colouring are fine; big changes at that point are paid extra."
+             data-ru="Две бесплатные правки на&nbsp;этапе скетча. Мелкие поправки после покраски — без проблем, крупные изменения на&nbsp;этом этапе оплачиваются отдельно.">Two free revisions at the sketch stage. Small fixes after colouring are fine; big changes at that point are paid extra.</p>
+        </details>
+        <details>
+          <summary data-en="Can I get a refund?" data-ru="Можно вернуть деньги?">Can I get a refund?</summary>
+          <p data-en="Full refund before I start the sketch, 50% after the sketch is done. No refunds once colouring has started."
+             data-ru="Полный возврат — до&nbsp;начала скетча, 50% — после готового скетча. После начала покраски возврата нет.">Full refund before I start the sketch, 50% after the sketch is done. No refunds once colouring has started.</p>
+        </details>
+        <details>
+          <summary data-en="How can I use the art?" data-ru="Как можно использовать арт?">How can I use the art?</summary>
+          <p data-en="Personal use: avatars, banners, posting with credit, printing for yourself. Selling, merch or ads count as commercial use (×2)."
+             data-ru="Личное использование: аватарки, баннеры, публикация с&nbsp;указанием автора, печать для себя. Продажа, мерч и&nbsp;реклама — коммерческое использование (×2).">Personal use: avatars, banners, posting with credit, printing for yourself. Selling, merch or ads count as commercial use (×2).</p>
+        </details>
+        <details>
+          <summary data-en="Can I post the art?" data-ru="Можно публиковать арт?">Can I post the art?</summary>
+          <p data-en="Yes, please credit me. I may also post the piece in my portfolio — tell me if you want it kept private."
+             data-ru="Да, с&nbsp;указанием автора. Я&nbsp;тоже могу выложить работу в&nbsp;портфолио — скажи, если её нужно держать в&nbsp;секрете.">Yes, please credit me. I may also post the piece in my portfolio — tell me if you want it kept private.</p>
+        </details>
+        <details>
+          <summary data-en="How do I pay?" data-ru="Как оплатить?">How do I pay?</summary>
+          <p data-en="100% upfront after we agree on the details. I&rsquo;ll send payment options in DMs."
+             data-ru="100% предоплата после согласования деталей. Способы оплаты пришлю в&nbsp;личных сообщениях.">100% upfront after we agree on the details. I&rsquo;ll send payment options in DMs.</p>
+        </details>
       </div>
     </div>
   </section>
 
-  <section class="sec" id="about">
-    <div class="wrap">
-      <div class="about">
-        <div class="about-art">
-          <img src="assets/about.jpg" width="1120" height="1400" alt="Portrait illustration by SHERR" loading="lazy">
-        </div>
-        <div class="about-copy">
-          <div class="eyebrow" style="margin-bottom:14px" data-en="About" data-ru="Обо мне">About</div>
-          <p class="lead" data-en="Hi, I&rsquo;m Sherr. I draw characters with a mood."
-             data-ru="Привет, я Sherr. Рисую персонажей с&nbsp;настроением.">Hi, I&rsquo;m Sherr. I draw characters with a mood.</p>
-          <p data-en="Portraits, original characters and fan art, quiet everyday moments and neon nights. I love expressive faces, dramatic light, strong colour and a bit of grain and texture."
-             data-ru="Портреты, оригинальные персонажи и&nbsp;фан-арт, тихие бытовые моменты и&nbsp;неоновые ночи. Люблю выразительные лица, драматичный свет, сочный цвет и&nbsp;немного зерна и&nbsp;текстуры.">Portraits, original characters and fan art, quiet everyday moments and neon nights. I love expressive faces, dramatic light, strong colour and a bit of grain and texture.</p>
-          <p data-en="If you have a character in your head or on a reference sheet, I&rsquo;ll bring them to life, from a loose sketch to a fully rendered piece."
-             data-ru="Если у&nbsp;тебя есть персонаж в&nbsp;голове или на&nbsp;референсах&nbsp;— я&nbsp;помогу ему ожить: от&nbsp;лёгкого скетча до&nbsp;полного рендера.">If you have a character in your head or on a reference sheet, I&rsquo;ll bring them to life, from a loose sketch to a fully rendered piece.</p>
-
-          <dl class="fact-list">
-            <div class="fact"><dt data-en="Tools" data-ru="Инструмент">Tools</dt><dd>Clip Studio Paint</dd></div>
-            <div class="fact"><dt data-en="Formats" data-ru="Форматы">Formats</dt><dd>PNG, JPG, 300 dpi</dd></div>
-            <div class="fact"><dt data-en="Orders" data-ru="Заказы">Orders</dt><dd data-en="Open" data-ru="Открыты">Open</dd></div>
-          </dl>
-        </div>
+  <!-- ============ ABOUT + CONTACT ============ -->
+  <section class="sec about" id="about">
+    <div class="wrap about-grid">
+      <div class="about-art">
+        <img src="assets/about.jpg" width="1120" height="1400" alt="Portrait illustration by SHERR" loading="lazy">
       </div>
-    </div>
-  </section>
+      <div class="about-copy">
+        <div class="eyebrow" data-en="About" data-ru="Обо мне">About</div>
+        <p class="lead" data-en="Hi, I&rsquo;m Sherr. I draw characters <em>with a mood.</em>"
+           data-ru="Привет, я&nbsp;Sherr. Рисую персонажей <em>с&nbsp;настроением.</em>">Hi, I&rsquo;m Sherr. I draw characters <em>with a mood.</em></p>
+        <p data-en="Portraits, OCs and fan art, quiet everyday moments and neon nights. I love expressive faces, dramatic light, strong colour and a bit of grain. I work in Clip Studio Paint."
+           data-ru="Портреты, оригинальные персонажи и&nbsp;фан-арт, тихие бытовые моменты и&nbsp;неоновые ночи. Люблю выразительные лица, драматичный свет, сочный цвет и&nbsp;немного зерна. Работаю в&nbsp;Clip Studio Paint.">Portraits, OCs and fan art, quiet everyday moments and neon nights. I love expressive faces, dramatic light, strong colour and a bit of grain. I work in Clip Studio Paint.</p>
 
-  <section class="sec contact" id="contact">
-    <div class="wrap">
-      <div class="eyebrow" style="margin-bottom:18px" data-en="Get in touch" data-ru="Связаться">Get in touch</div>
-      <h2 data-en="Want an <em>illustration?</em>" data-ru="Хочешь <em>иллюстрацию?</em>">Want an <em>illustration?</em></h2>
-      <p style="color:var(--muted);max-width:48ch;margin:20px 0 0" data-en="Ask about open slots and deadlines in DMs — I reply within a day. Send references right away."
-         data-ru="Свободные слоты и сроки уточняй в ЛС — отвечаю в течение дня. Референсы присылай сразу.">Ask about open slots and deadlines in DMs — I reply within a day. Send references right away.</p>
-
-      <div class="links">
-        <a class="link" href="https://t.me/plina_sherr" target="_blank" rel="noopener">
-          <div><div class="n">Telegram</div><div class="h">@plina_sherr</div></div><span class="ar">↗</span>
-        </a>
-        <a class="link" href="https://x.com/polinasherr" target="_blank" rel="noopener">
-          <div><div class="n">X / Twitter</div><div class="h">@polinasherr</div></div><span class="ar">↗</span>
-        </a>
-        <a class="link" href="https://instagram.com/plina_sherr" target="_blank" rel="noopener">
-          <div><div class="n">Instagram</div><div class="h">@plina_sherr</div></div><span class="ar">↗</span>
-        </a>
-        <a class="link" href="https://tiktok.com/@polina_sherr" target="_blank" rel="noopener">
-          <div><div class="n">TikTok</div><div class="h">@polina_sherr</div></div><span class="ar">↗</span>
-        </a>
-        <a class="link" href="https://boosty.to/plina_sherr" target="_blank" rel="noopener">
-          <div><div class="n">Boosty</div><div class="h">boosty.to/plina_sherr</div></div><span class="ar">↗</span>
-        </a>
+        <div class="contact-box" id="contact">
+          <h2 data-en="Want an <em>illustration?</em>" data-ru="Хочешь <em>иллюстрацию?</em>">Want an <em>illustration?</em></h2>
+          <p class="note" data-en="Message me with your references — I reply within a day."
+             data-ru="Напиши мне и&nbsp;пришли референсы — отвечаю в&nbsp;течение дня.">Message me with your references — I reply within a day.</p>
+          <a class="btn btn-solid" href="https://t.me/plina_sherr" target="_blank" rel="noopener"
+             data-en="Message me on Telegram ↗" data-ru="Написать в&nbsp;Telegram ↗">Message me on Telegram ↗</a>
+          <div class="socials">
+            <a href="https://instagram.com/plina_sherr" target="_blank" rel="noopener"><small>Instagram</small>@plina_sherr</a>
+            <a href="https://x.com/polinasherr" target="_blank" rel="noopener"><small>X</small>@polinasherr</a>
+            <a href="https://tiktok.com/@polina_sherr" target="_blank" rel="noopener"><small>TikTok</small>@polina_sherr</a>
+            <a href="https://boosty.to/plina_sherr" target="_blank" rel="noopener"><small>Boosty</small>plina_sherr</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -492,7 +631,7 @@
   <div class="wrap">
     <span>© <span id="year">2026</span> SHERR</span>
     <span data-en="All artwork is original. Please do not repost without permission."
-          data-ru="Все иллюстрации на сайте — авторские. Копирование без разрешения запрещено.">All artwork is original. Please do not repost without permission.</span>
+          data-ru="Все иллюстрации на&nbsp;сайте — авторские. Копирование без разрешения запрещено.">All artwork is original. Please do not repost without permission.</span>
   </div>
 </footer>
 
@@ -508,12 +647,10 @@
 (function () {
   "use strict";
 
-  /* ---------- prices: separate grids for EN ($) and RU (₽) ----------
-     Each price has its own data-usd and data-rub - no currency conversion. */
+  /* ---------- prices: separate grids for EN ($) and RU (₽) ---------- */
   var priceNodes = document.querySelectorAll("[data-usd]");
-
   function formatRub(v) {
-    return String(v).replace(/\B(?=(\d{3})+(?!\d))/g, "\u00a0") + "\u00a0₽";
+    return String(v).replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " ₽";
   }
   function renderPrices(lang) {
     priceNodes.forEach(function (el) {
@@ -523,10 +660,32 @@
     });
   }
 
+  /* ---------- slots ---------- */
+  var statusEl = document.getElementById("status");
+  var slotsEl = document.getElementById("slots");
+  function renderSlots(lang) {
+    var free = statusEl.getAttribute("data-free"), total = statusEl.getAttribute("data-total");
+    if (!free || !total) { slotsEl.textContent = ""; return; }
+    slotsEl.textContent = lang === "ru"
+      ? "· свободно " + free + " из " + total
+      : "· " + free + " of " + total + " slots";
+  }
+
+  /* ---------- gallery state (used by language switch) ---------- */
+  var grid = document.getElementById("gallery");
+  var moreBtn = document.getElementById("more-btn");
+  var currentLang = "en";
+  function renderMoreBtn() {
+    var open = grid.classList.contains("all");
+    var n = grid.querySelectorAll(".g-item").length;
+    moreBtn.textContent = currentLang === "ru"
+      ? (open ? "Свернуть" : "Показать все работы (" + n + ")")
+      : (open ? "Show less" : "Show all works (" + n + ")");
+  }
+
   /* ---------- language ---------- */
   var i18nNodes = document.querySelectorAll("[data-en]");
   var langButtons = document.querySelectorAll(".lang button");
-  var currentLang = "en";
 
   function setLang(lang) {
     currentLang = lang;
@@ -537,120 +696,98 @@
     document.documentElement.lang = lang;
     langButtons.forEach(function (b) { b.classList.toggle("on", b.dataset.lang === lang); });
     renderPrices(lang);
+    renderSlots(lang);
+    renderMoreBtn();
     try { localStorage.setItem("sherr-lang", lang); } catch (e) {}
   }
-
   langButtons.forEach(function (b) {
     b.addEventListener("click", function () { setLang(b.dataset.lang); });
   });
-
   var saved = null;
   try { saved = localStorage.getItem("sherr-lang"); } catch (e) {}
   setLang(saved === "ru" ? "ru" : "en");
 
   /* ---------- gallery: justified rows ----------
      Every row fills the full width, images keep their proportions (no cropping),
-     order is kept. Rows are balanced so there is no half-empty last row.
-     Phones: one work per row, full width. */
-  var grid = document.getElementById("gallery");
-  var items = Array.prototype.slice.call(grid.querySelectorAll(".g-item"));
+     order is kept, rows are balanced so there is no half-empty last row. */
+  var allItems = Array.prototype.slice.call(grid.querySelectorAll(".g-item"));
 
+  function visibleItems() {
+    var open = grid.classList.contains("all");
+    return allItems.filter(function (f) { return open || !f.classList.contains("more"); });
+  }
   function ratioOf(fig) {
     var img = fig.querySelector("img");
     var w = +img.getAttribute("width") || img.naturalWidth || 1;
     var h = +img.getAttribute("height") || img.naturalHeight || 1;
     return w / h;
   }
-
-  /* split ratios into k contiguous rows with sums as even as possible */
   function partition(r, k) {
-    var n = r.length, pre = [0];
-    for (var i = 0; i < n; i++) pre.push(pre[i] + r[i]);
-    var avg = pre[n] / k, INF = 1e18;
-    var cost = [], cut = [];
-    for (var j = 0; j <= k; j++) { cost.push([]); cut.push([]); for (var t = 0; t <= n; t++) { cost[j].push(INF); cut[j].push(0); } }
+    var n = r.length, pre = [0], i, j, t, p;
+    for (i = 0; i < n; i++) pre.push(pre[i] + r[i]);
+    var avg = pre[n] / k, INF = 1e18, cost = [], cut = [];
+    for (j = 0; j <= k; j++) { cost.push([]); cut.push([]); for (t = 0; t <= n; t++) { cost[j].push(INF); cut[j].push(0); } }
     cost[0][0] = 0;
-    for (j = 1; j <= k; j++) {
-      for (t = j; t <= n; t++) {
-        for (var p = j - 1; p < t; p++) {
-          var d = pre[t] - pre[p] - avg;
-          var c = cost[j - 1][p] + d * d;
-          if (c < cost[j][t]) { cost[j][t] = c; cut[j][t] = p; }
-        }
-      }
+    for (j = 1; j <= k; j++) for (t = j; t <= n; t++) for (p = j - 1; p < t; p++) {
+      var d = pre[t] - pre[p] - avg, c = cost[j - 1][p] + d * d;
+      if (c < cost[j][t]) { cost[j][t] = c; cut[j][t] = p; }
     }
     var rows = [], end = n;
     for (j = k; j >= 1; j--) { var st = cut[j][end]; rows.unshift([st, end]); end = st; }
     return rows;
   }
-
   function layout() {
     var W = grid.clientWidth;
     if (!W) return;
+    var items = visibleItems();
     var gap = Math.round(Math.min(16, Math.max(8, window.innerWidth * 0.01)));
     var r = items.map(ratioOf);
+    var target = W >= 1500 ? 400 : W >= 1020 ? 340 : W >= 560 ? 270 : 210;
+    var total = r.reduce(function (a, b) { return a + b; }, 0);
+    var k = Math.max(1, Math.min(items.length, Math.round(total * target / W)));
     var y = 0;
-
-    if (W < 560) {
-      items.forEach(function (fig, i) {
-        var h = W / r[i];
-        fig.style.cssText = "width:" + W + "px;height:" + h + "px;left:0;top:" + y + "px";
-        y += h + gap;
-      });
-    } else {
-      var target = W >= 1500 ? 400 : W >= 1020 ? 340 : 270;
-      var total = r.reduce(function (a, b) { return a + b; }, 0);
-      var k = Math.max(1, Math.min(items.length, Math.round(total * target / W)));
-      partition(r, k).forEach(function (row) {
-        var sum = 0, n = row[1] - row[0];
-        for (var i = row[0]; i < row[1]; i++) sum += r[i];
-        var h = (W - gap * (n - 1)) / sum, x = 0;
-        for (i = row[0]; i < row[1]; i++) {
-          var w = h * r[i];
-          if (i === row[1] - 1) w = W - x;          /* absorb rounding */
-          items[i].style.cssText = "width:" + w + "px;height:" + h + "px;left:" + x + "px;top:" + y + "px";
-          x += w + gap;
-        }
-        y += h + gap;
-      });
-    }
+    partition(r, k).forEach(function (row) {
+      var sum = 0, n = row[1] - row[0], i;
+      for (i = row[0]; i < row[1]; i++) sum += r[i];
+      var h = (W - gap * (n - 1)) / sum, x = 0;
+      for (i = row[0]; i < row[1]; i++) {
+        var w = (i === row[1] - 1) ? W - x : h * r[i];
+        items[i].style.cssText = "width:" + w + "px;height:" + h + "px;left:" + x + "px;top:" + y + "px";
+        x += w + gap;
+      }
+      y += h + gap;
+    });
     grid.style.height = Math.max(0, y - gap) + "px";
   }
 
-  items.forEach(function (fig) {
-    var img = fig.querySelector("img");
-    if (img.complete && img.naturalWidth) return;
-    img.addEventListener("load", layout, { once: true });
-    img.addEventListener("error", layout, { once: true });
+  moreBtn.addEventListener("click", function () {
+    var wasOpen = grid.classList.contains("all");
+    grid.classList.toggle("all");
+    renderMoreBtn();
+    layout();
+    if (wasOpen) document.getElementById("works").scrollIntoView();
   });
 
   layout();
   window.addEventListener("load", layout);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(layout);
-
   var rz;
-  window.addEventListener("resize", function () {
-    clearTimeout(rz);
-    rz = setTimeout(layout, 100);
-  });
-  /* ---------- lightbox ---------- */
+  window.addEventListener("resize", function () { clearTimeout(rz); rz = setTimeout(layout, 100); });
+
+  /* ---------- lightbox: all gallery works, hero & price examples open into it ---------- */
   var lb = document.getElementById("lb");
   var lbImg = document.getElementById("lb-img");
   var lbCount = document.getElementById("lb-count");
-  var sources = items.map(function (fig) {
+  var sources = allItems.map(function (fig) {
     var img = fig.querySelector("img");
     return { full: img.getAttribute("data-full"), alt: img.alt };
   });
-  var current = 0;
-  var lbToken = 0, lbTimer = null;
+  var current = 0, lbToken = 0, lbTimer = null;
 
   function preload(i) {
     var s = sources[(i + sources.length) % sources.length];
-    if (!s) return;
-    var im = new Image();
-    im.src = s.full;
+    if (s) { var im = new Image(); im.src = s.full; }
   }
-
   function openLb(i) {
     current = i;
     lb.classList.add("open");
@@ -665,12 +802,9 @@
     document.body.style.overflow = "";
   }
   function renderLb(instant) {
-    var s = sources[current];
-    var token = ++lbToken;
-
+    var s = sources[current], token = ++lbToken;
     lbCount.textContent = (current + 1) + " / " + sources.length;
     lbImg.classList.remove("show");
-
     clearTimeout(lbTimer);
     lbTimer = setTimeout(function () {
       if (token !== lbToken) return;
@@ -683,7 +817,6 @@
       if (lbImg.complete && lbImg.naturalWidth) showIt();
       else lbImg.onload = showIt;
     }, instant ? 30 : 320);
-
     preload(current + 1);
     preload(current - 1);
   }
@@ -692,14 +825,20 @@
     renderLb(false);
   }
 
-  items.forEach(function (fig, i) { fig.addEventListener("click", function () { openLb(i); }); });
+  allItems.forEach(function (fig, i) { fig.addEventListener("click", function () { openLb(i); }); });
+  document.querySelectorAll("[data-open]").forEach(function (el) {
+    el.addEventListener("click", function () {
+      var src = el.getAttribute("data-open"), idx = 0;
+      sources.forEach(function (s, i) { if (s.full === src) idx = i; });
+      openLb(idx);
+    });
+  });
 
   lb.querySelector(".lb-close").addEventListener("click", closeLb);
   lb.querySelector(".lb-prev").addEventListener("click", function (e) { e.stopPropagation(); step(-1); });
   lb.querySelector(".lb-next").addEventListener("click", function (e) { e.stopPropagation(); step(1); });
   lb.addEventListener("click", function (e) { if (e.target === lb) closeLb(); });
 
-  /* swipe on phones */
   var tx = null, ty = null;
   lb.addEventListener("touchstart", function (e) {
     if (e.touches.length !== 1) { tx = null; return; }
