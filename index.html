@@ -239,23 +239,35 @@
     display:flex;flex-direction:column;
   }
   .card:hover{border-color:rgba(168,148,201,.5);transform:translateY(-3px)}
-  .card-ex{
-    position:relative;display:block;width:100%;padding:0;border:0;cursor:zoom-in;
-    aspect-ratio:16/10;overflow:hidden;background:var(--bg-soft);
+  .card-ex{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--bg-soft)}
+  .stage-img{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;cursor:zoom-in;
+    opacity:0;transition:opacity .45s ease,transform .7s cubic-bezier(.2,.7,.2,1);
   }
-  .card-ex img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
-  .card:hover .card-ex img{transform:scale(1.03)}
-  .card-ex .ex-label{
-    position:absolute;left:12px;bottom:12px;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
-    background:rgba(13,12,16,.75);border:1px solid var(--line);border-radius:100px;padding:4px 10px;color:#d8d2e3;
-    -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  .stage-img.on{opacity:1;z-index:1}
+  .card:hover .stage-img.on{transform:scale(1.03)}
+  .stage-tabs{
+    position:absolute;left:12px;bottom:12px;z-index:2;display:flex;gap:2px;padding:3px;
+    background:rgba(13,12,16,.72);border:1px solid var(--line);border-radius:100px;
+    -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
   }
+  .stage-tabs button{
+    background:none;border:0;cursor:pointer;color:#cfc9dc;font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+    padding:6px 11px;border-radius:100px;transition:background .2s,color .2s;
+  }
+  .stage-tabs button.on{background:var(--accent);color:#100e14;font-weight:600}
   .card-body{padding:clamp(20px,2.2vw,30px);display:flex;flex-direction:column;flex:1}
   .card h3{font-size:clamp(26px,2.6vw,34px);letter-spacing:.03em;text-transform:uppercase;margin-bottom:6px}
   .card .scope{font-size:13px;color:var(--muted);margin:0 0 18px}
-  .tier{display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding:11px 0;border-top:1px dashed rgba(232,228,238,.13)}
+  .tier{
+    display:flex;align-items:baseline;justify-content:space-between;gap:10px;width:100%;
+    padding:11px 8px;margin:0 -8px;width:calc(100% + 16px);background:none;border:0;border-top:1px dashed rgba(232,228,238,.13);
+    cursor:pointer;text-align:left;border-radius:4px;transition:background .2s;
+  }
+  .tier:hover,.tier.on{background:rgba(168,148,201,.07)}
+  .tier.on span{color:var(--ink)}
   .tier:last-child{border-bottom:1px dashed rgba(232,228,238,.13)}
-  .tier span{font-size:14px;color:#c9c3d6}
+  .tier span{font-size:14px;color:#a9a2b8;transition:color .2s}
   .tier b{font-family:var(--serif);font-size:24px;font-weight:600;color:var(--accent);white-space:nowrap;font-variant-numeric:lining-nums tabular-nums}
 
   .levels{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);margin-top:clamp(18px,2.4vw,28px)}
@@ -402,16 +414,19 @@
       <div class="gallery" id="gallery">
         <figure class="g-item"><img src="assets/thumbs/w12.jpg" srcset="assets/thumbs/w12.jpg 929w, assets/works/w12.jpg 2028w" sizes="(max-width:560px) 100vw, 40vw" width="929" height="1100" loading="lazy" decoding="async" data-full="assets/works/w12.jpg" alt="Illustration — elf, portrait and full figure"></figure>
         <figure class="g-item"><img src="assets/thumbs/w14.jpg" srcset="assets/thumbs/w14.jpg 1100w, assets/works/w14.jpg 2400w" sizes="(max-width:560px) 100vw, 40vw" width="1100" height="460" loading="lazy" decoding="async" data-full="assets/works/w14.jpg" alt="Illustration — sci-fi pair in the snow"></figure>
+        <figure class="g-item"><img src="assets/thumbs/w16.jpg" srcset="assets/thumbs/w16.jpg 841w, assets/works/w16.jpg 1835w" sizes="(max-width:560px) 100vw, 40vw" width="841" height="1100" loading="lazy" decoding="async" data-full="assets/works/w16.jpg" alt="Fan art — Satoru and Suguru"></figure>
         <figure class="g-item"><img src="assets/thumbs/w10.jpg" srcset="assets/thumbs/w10.jpg 1100w, assets/works/w10.jpg 2400w" sizes="(max-width:560px) 100vw, 40vw" width="1100" height="777" loading="lazy" decoding="async" data-full="assets/works/w10.jpg" alt="Illustration — two characters with a wizard hat"></figure>
         <figure class="g-item"><img src="assets/thumbs/w08.jpg" srcset="assets/thumbs/w08.jpg 1100w, assets/works/w08.jpg 2400w" sizes="(max-width:560px) 100vw, 40vw" width="1100" height="776" loading="lazy" decoding="async" data-full="assets/works/w08.jpg" alt="Illustration — two silver-haired characters"></figure>
         <figure class="g-item"><img src="assets/thumbs/w05.jpg" srcset="assets/thumbs/w05.jpg 1100w, assets/works/w05.jpg 2400w" sizes="(max-width:560px) 100vw, 40vw" width="1100" height="778" loading="lazy" decoding="async" data-full="assets/works/w05.jpg" alt="Illustration — warrior in a winged helmet"></figure>
         <figure class="g-item"><img src="assets/thumbs/w06.jpg" srcset="assets/thumbs/w06.jpg 1100w, assets/works/w06.jpg 2400w" sizes="(max-width:560px) 100vw, 40vw" width="1100" height="1066" loading="lazy" decoding="async" data-full="assets/works/w06.jpg" alt="Illustration — reading a book"></figure>
         <figure class="g-item"><img src="assets/thumbs/w01.jpg" srcset="assets/thumbs/w01.jpg 1100w, assets/works/w01.jpg 2400w" sizes="(max-width:560px) 100vw, 40vw" width="1100" height="651" loading="lazy" decoding="async" data-full="assets/works/w01.jpg" alt="Illustration — vampire in neon light"></figure>
         <figure class="g-item"><img src="assets/thumbs/w13.jpg" srcset="assets/thumbs/w13.jpg 1100w, assets/works/w13.jpg 2400w" sizes="(max-width:560px) 100vw, 40vw" width="1100" height="1100" loading="lazy" decoding="async" data-full="assets/works/w13.jpg" alt="Illustration — sitting on the floor in soft light"></figure>
+        <figure class="g-item"><img src="assets/thumbs/w18.jpg" srcset="assets/thumbs/w18.jpg 1100w, assets/works/w18.jpg 2400w" sizes="(max-width:560px) 100vw, 40vw" width="1100" height="822" loading="lazy" decoding="async" data-full="assets/works/w18.jpg" alt="Fan art — cat and mushroom creatures"></figure>
         <figure class="g-item more"><img src="assets/thumbs/w02.jpg" srcset="assets/thumbs/w02.jpg 1100w, assets/works/w02.jpg 2400w" sizes="(max-width:560px) 100vw, 40vw" width="1100" height="779" loading="lazy" decoding="async" data-full="assets/works/w02.jpg" alt="Illustration — hooded figure with a sparkler"></figure>
         <figure class="g-item more"><img src="assets/thumbs/w09.jpg" srcset="assets/thumbs/w09.jpg 779w, assets/works/w09.jpg 1700w" sizes="(max-width:560px) 100vw, 40vw" width="779" height="1100" loading="lazy" decoding="async" data-full="assets/works/w09.jpg" alt="Illustration — eating watermelon"></figure>
         <figure class="g-item more"><img src="assets/thumbs/w03.jpg" srcset="assets/thumbs/w03.jpg 777w, assets/works/w03.jpg 1694w" sizes="(max-width:560px) 100vw, 40vw" width="777" height="1100" loading="lazy" decoding="async" data-full="assets/works/w03.jpg" alt="Illustration — in sunglasses, in the park"></figure>
         <figure class="g-item more"><img src="assets/thumbs/w04.jpg" srcset="assets/thumbs/w04.jpg 880w, assets/works/w04.jpg 1920w" sizes="(max-width:560px) 100vw, 40vw" width="880" height="1100" loading="lazy" decoding="async" data-full="assets/works/w04.jpg" alt="Illustration — lying on the floor in a beam of light"></figure>
+        <figure class="g-item more"><img src="assets/thumbs/w17.jpg" srcset="assets/thumbs/w17.jpg 1100w, assets/works/w17.jpg 2400w" sizes="(max-width:560px) 100vw, 40vw" width="1100" height="892" loading="lazy" decoding="async" data-full="assets/works/w17.jpg" alt="Portrait — white hair on red"></figure>
         <figure class="g-item more"><img src="assets/thumbs/w11.jpg" srcset="assets/thumbs/w11.jpg 1100w, assets/works/w11.jpg 2400w" sizes="(max-width:560px) 100vw, 40vw" width="1100" height="880" loading="lazy" decoding="async" data-full="assets/works/w11.jpg" alt="Sketch — two characters"></figure>
       </div>
       <div class="more-wrap">
@@ -434,51 +449,59 @@
       </div>
 
       <!-- ЦЕНЫ: data-usd — английская версия, data-rub — русская -->
+      <!-- ЦЕНЫ: data-usd — английская версия, data-rub — русская.
+           Картинки-примеры: data-stage = sketch / flat / render -->
       <div class="cards">
-        <article class="card">
-          <button class="card-ex" type="button" data-open="assets/works/w01.jpg" aria-label="Open example">
-            <img src="assets/thumbs/w01.jpg" width="1100" height="651" loading="lazy" alt="Bust example">
-            <span class="ex-label" data-en="Example" data-ru="Пример">Example</span>
-          </button>
+        <article class="card" data-stage="render">
+          <div class="card-ex">
+            <img class="stage-img" data-stage="sketch" data-open="assets/stages/bust-sketch.jpg" src="assets/stages/bust-sketch.jpg" width="1300" height="919" loading="lazy" alt="Bust example — sketch" style="object-position:22% 40%">
+            <img class="stage-img" data-stage="flat" data-open="assets/works/w17.jpg" src="assets/thumbs/w17.jpg" width="1100" height="892" loading="lazy" alt="Bust example — flat" style="object-position:45% 30%">
+            <img class="stage-img on" data-stage="render" data-open="assets/works/w01.jpg" src="assets/thumbs/w01.jpg" width="1100" height="651" loading="lazy" alt="Bust example — render" style="object-position:58% 40%">
+            <div class="stage-tabs" role="group" aria-label="Level of finish"><button type="button" data-stage="sketch" data-en="Sketch" data-ru="Скетч">Sketch</button><button type="button" data-stage="flat" data-en="Flat" data-ru="Флэт">Flat</button><button type="button" data-stage="render" class="on" data-en="Render" data-ru="Рендер">Render</button></div>
+          </div>
           <div class="card-body">
             <h3 data-en="Bust" data-ru="Бюст">Bust</h3>
             <p class="scope" data-en="Chest-up, focus on face and lighting." data-ru="По грудь, акцент на&nbsp;лице и&nbsp;свете.">Chest-up, focus on face and lighting.</p>
             <div class="tiers">
-              <div class="tier"><span data-en="Sketch" data-ru="Скетч">Sketch</span><b data-usd="15" data-rub="600">$15</b></div>
-              <div class="tier"><span data-en="Flat" data-ru="Флэт">Flat</span><b data-usd="25" data-rub="1300">$25</b></div>
-              <div class="tier"><span data-en="Render" data-ru="Рендер">Render</span><b data-usd="40" data-rub="2200">$40</b></div>
+              <button type="button" class="tier" data-stage="sketch"><span data-en="Sketch" data-ru="Скетч">Sketch</span><b data-usd="15" data-rub="600">$15</b></button>
+              <button type="button" class="tier" data-stage="flat"><span data-en="Flat" data-ru="Флэт">Flat</span><b data-usd="25" data-rub="1300">$25</b></button>
+              <button type="button" class="tier on" data-stage="render"><span data-en="Render" data-ru="Рендер">Render</span><b data-usd="40" data-rub="2200">$40</b></button>
             </div>
           </div>
         </article>
 
-        <article class="card">
-          <button class="card-ex" type="button" data-open="assets/works/w06.jpg" aria-label="Open example">
-            <img src="assets/thumbs/w06.jpg" width="1100" height="1066" loading="lazy" alt="Half body example" style="object-position:50% 35%">
-            <span class="ex-label" data-en="Example" data-ru="Пример">Example</span>
-          </button>
+        <article class="card" data-stage="render">
+          <div class="card-ex">
+            <img class="stage-img" data-stage="sketch" data-open="assets/stages/half-sketch.jpg" src="assets/stages/half-sketch.jpg" width="922" height="1300" loading="lazy" alt="Half body example — sketch" style="object-position:50% 20%">
+            <img class="stage-img" data-stage="flat" data-open="assets/stages/half-flat.jpg" src="assets/stages/half-flat.jpg" width="922" height="1300" loading="lazy" alt="Half body example — flat" style="object-position:50% 20%">
+            <img class="stage-img on" data-stage="render" data-open="assets/stages/half-render.jpg" src="assets/stages/half-render.jpg" width="922" height="1300" loading="lazy" alt="Half body example — render" style="object-position:50% 20%">
+            <div class="stage-tabs" role="group" aria-label="Level of finish"><button type="button" data-stage="sketch" data-en="Sketch" data-ru="Скетч">Sketch</button><button type="button" data-stage="flat" data-en="Flat" data-ru="Флэт">Flat</button><button type="button" data-stage="render" class="on" data-en="Render" data-ru="Рендер">Render</button></div>
+          </div>
           <div class="card-body">
             <h3 data-en="Half body" data-ru="Полурост">Half body</h3>
             <p class="scope" data-en="Thigh-up, hands and pose included." data-ru="До&nbsp;бёдер, руки и&nbsp;поза включены.">Thigh-up, hands and pose included.</p>
             <div class="tiers">
-              <div class="tier"><span data-en="Sketch" data-ru="Скетч">Sketch</span><b data-usd="20" data-rub="900">$20</b></div>
-              <div class="tier"><span data-en="Flat" data-ru="Флэт">Flat</span><b data-usd="35" data-rub="2000">$35</b></div>
-              <div class="tier"><span data-en="Render" data-ru="Рендер">Render</span><b data-usd="60" data-rub="3300">$60</b></div>
+              <button type="button" class="tier" data-stage="sketch"><span data-en="Sketch" data-ru="Скетч">Sketch</span><b data-usd="20" data-rub="900">$20</b></button>
+              <button type="button" class="tier" data-stage="flat"><span data-en="Flat" data-ru="Флэт">Flat</span><b data-usd="35" data-rub="2000">$35</b></button>
+              <button type="button" class="tier on" data-stage="render"><span data-en="Render" data-ru="Рендер">Render</span><b data-usd="60" data-rub="3300">$60</b></button>
             </div>
           </div>
         </article>
 
-        <article class="card">
-          <button class="card-ex" type="button" data-open="assets/works/w13.jpg" aria-label="Open example">
-            <img src="assets/thumbs/w13.jpg" width="1100" height="1100" loading="lazy" alt="Full body example" style="object-position:50% 60%">
-            <span class="ex-label" data-en="Example" data-ru="Пример">Example</span>
-          </button>
+        <article class="card" data-stage="render">
+          <div class="card-ex">
+            <img class="stage-img" data-stage="sketch" data-open="assets/stages/full-sketch.jpg" src="assets/stages/full-sketch.jpg" width="922" height="1300" loading="lazy" alt="Full body example — sketch" style="object-position:50% 40%">
+            <img class="stage-img" data-stage="flat" data-open="assets/stages/full-flat.jpg" src="assets/stages/full-flat.jpg" width="922" height="1300" loading="lazy" alt="Full body example — flat" style="object-position:50% 40%">
+            <img class="stage-img on" data-stage="render" data-open="assets/works/w12.jpg" src="assets/thumbs/w12.jpg" width="929" height="1100" loading="lazy" alt="Full body example — render" style="object-position:50% 50%">
+            <div class="stage-tabs" role="group" aria-label="Level of finish"><button type="button" data-stage="sketch" data-en="Sketch" data-ru="Скетч">Sketch</button><button type="button" data-stage="flat" data-en="Flat" data-ru="Флэт">Flat</button><button type="button" data-stage="render" class="on" data-en="Render" data-ru="Рендер">Render</button></div>
+          </div>
           <div class="card-body">
             <h3 data-en="Full body" data-ru="Полный рост">Full body</h3>
             <p class="scope" data-en="The whole figure, pose and attitude." data-ru="Фигура целиком, поза и&nbsp;характер.">The whole figure, pose and attitude.</p>
             <div class="tiers">
-              <div class="tier"><span data-en="Sketch" data-ru="Скетч">Sketch</span><b data-usd="30" data-rub="1300">$30</b></div>
-              <div class="tier"><span data-en="Flat" data-ru="Флэт">Flat</span><b data-usd="50" data-rub="2800">$50</b></div>
-              <div class="tier"><span data-en="Render" data-ru="Рендер">Render</span><b data-usd="80" data-rub="4800">$80</b></div>
+              <button type="button" class="tier" data-stage="sketch"><span data-en="Sketch" data-ru="Скетч">Sketch</span><b data-usd="30" data-rub="1300">$30</b></button>
+              <button type="button" class="tier" data-stage="flat"><span data-en="Flat" data-ru="Флэт">Flat</span><b data-usd="50" data-rub="2800">$50</b></button>
+              <button type="button" class="tier on" data-stage="render"><span data-en="Render" data-ru="Рендер">Render</span><b data-usd="80" data-rub="4800">$80</b></button>
             </div>
           </div>
         </article>
@@ -792,13 +815,15 @@
     var img = fig.querySelector("img");
     return { full: img.getAttribute("data-full"), alt: img.alt };
   });
+  var list = sources;   /* what the arrows browse: the gallery, or the 3 stages of a price card */
   var current = 0, lbToken = 0, lbTimer = null;
 
   function preload(i) {
-    var s = sources[(i + sources.length) % sources.length];
+    var s = list[(i + list.length) % list.length];
     if (s) { var im = new Image(); im.src = s.full; }
   }
-  function openLb(i) {
+  function openLb(i, customList) {
+    list = customList || sources;
     current = i;
     lb.classList.add("open");
     lb.setAttribute("aria-hidden", "false");
@@ -812,8 +837,8 @@
     document.body.style.overflow = "";
   }
   function renderLb(instant) {
-    var s = sources[current], token = ++lbToken;
-    lbCount.textContent = (current + 1) + " / " + sources.length;
+    var s = list[current], token = ++lbToken;
+    lbCount.textContent = s.label ? s.label + " · " + (current + 1) + " / " + list.length : (current + 1) + " / " + list.length;
     lbImg.classList.remove("show");
     clearTimeout(lbTimer);
     lbTimer = setTimeout(function () {
@@ -831,16 +856,50 @@
     preload(current - 1);
   }
   function step(d) {
-    current = (current + d + sources.length) % sources.length;
+    current = (current + d + list.length) % list.length;
     renderLb(false);
   }
 
   allItems.forEach(function (fig, i) { fig.addEventListener("click", function () { openLb(i); }); });
-  document.querySelectorAll("[data-open]").forEach(function (el) {
+  document.querySelectorAll(".hero-art [data-open]").forEach(function (el) {
     el.addEventListener("click", function () {
       var src = el.getAttribute("data-open"), idx = 0;
       sources.forEach(function (s, i) { if (s.full === src) idx = i; });
       openLb(idx);
+    });
+  });
+
+  /* ---------- price cards: Sketch / Flat / Render switcher ---------- */
+  var stageNames = { sketch: ["Sketch", "Скетч"], flat: ["Flat", "Флэт"], render: ["Render", "Рендер"] };
+  document.querySelectorAll(".card").forEach(function (card) {
+    var imgs = Array.prototype.slice.call(card.querySelectorAll(".stage-img"));
+    var controls = card.querySelectorAll("[data-stage]:not(.stage-img)");
+    function setStage(st) {
+      card.setAttribute("data-stage", st);
+      imgs.forEach(function (im) {
+        if (im.getAttribute("data-stage") === st) { im.loading = "eager"; im.classList.add("on"); }
+        else im.classList.remove("on");
+      });
+      controls.forEach(function (c) { c.classList.toggle("on", c.getAttribute("data-stage") === st); });
+    }
+    controls.forEach(function (c) {
+      c.addEventListener("click", function (e) { e.stopPropagation(); setStage(c.getAttribute("data-stage")); });
+    });
+    /* warm up the other stages once the card is near the screen */
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (en) {
+        if (en[0].isIntersecting) { imgs.forEach(function (im) { im.loading = "eager"; }); io.disconnect(); }
+      }, { rootMargin: "300px" });
+      io.observe(card);
+    }
+    imgs.forEach(function (im, i) {
+      im.addEventListener("click", function () {
+        var stages = imgs.map(function (x) {
+          var n = stageNames[x.getAttribute("data-stage")];
+          return { full: x.getAttribute("data-open"), alt: x.alt, label: currentLang === "ru" ? n[1] : n[0] };
+        });
+        openLb(i, stages);
+      });
     });
   });
 
