@@ -327,6 +327,9 @@
   .socials a:hover{border-color:var(--accent);color:var(--accent)}
   .socials a small{color:var(--dim);font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin-right:6px}
 
+  .cta-row{display:flex;flex-wrap:wrap;gap:10px}
+  html[lang="ru"] .only-en, html:not([lang="ru"]) .only-ru{display:none}
+
   footer{padding:30px 0 38px;border-top:1px solid var(--line);font-size:12.5px;color:#918a9e}
   footer .wrap{display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between;align-items:center}
 
@@ -522,8 +525,8 @@
           <h3 class="sub-h" data-en="How it works" data-ru="Как проходит заказ">How it works</h3>
           <ol class="steps">
             <li><b data-en="Request" data-ru="Заявка">Request</b>
-              <span data-en="DM me on Telegram, Instagram or X with your references and idea."
-                    data-ru="Пиши в&nbsp;Telegram, Instagram или X&nbsp;— с&nbsp;референсами и&nbsp;идеей.">DM me on Telegram, Instagram or X with your references and idea.</span></li>
+              <span data-en="DM me on X (Twitter) or Boosty with your references and idea."
+                    data-ru="Пиши в&nbsp;Telegram, Instagram или X&nbsp;— с&nbsp;референсами и&nbsp;идеей.">DM me on X (Twitter) or Boosty with your references and idea.</span></li>
             <li><b data-en="Booking" data-ru="Бронь">Booking</b>
               <span data-en="I confirm the price and deadline. After 100% payment your piece goes into the queue."
                     data-ru="Подтверждаю цену и&nbsp;срок. После 100% оплаты работа встаёт в&nbsp;очередь.">I confirm the price and deadline. After 100% payment your piece goes into the queue.</span></li>
@@ -612,13 +615,26 @@
           <h2 data-en="Want an <em>illustration?</em>" data-ru="Хочешь <em>иллюстрацию?</em>">Want an <em>illustration?</em></h2>
           <p class="note" data-en="Message me with your references — I reply within a day."
              data-ru="Напиши мне и&nbsp;пришли референсы — отвечаю в&nbsp;течение дня.">Message me with your references — I reply within a day.</p>
-          <a class="btn btn-solid" href="https://t.me/plina_sherr" target="_blank" rel="noopener"
-             data-en="Message me on Telegram ↗" data-ru="Написать в&nbsp;Telegram ↗">Message me on Telegram ↗</a>
-          <div class="socials">
-            <a href="https://instagram.com/plina_sherr" target="_blank" rel="noopener"><small>Instagram</small>@plina_sherr</a>
-            <a href="https://x.com/polinasherr" target="_blank" rel="noopener"><small>X</small>@polinasherr</a>
-            <a href="https://tiktok.com/@polina_sherr" target="_blank" rel="noopener"><small>TikTok</small>@polina_sherr</a>
-            <a href="https://boosty.to/plina_sherr" target="_blank" rel="noopener"><small>Boosty</small>plina_sherr</a>
+          <!-- EN: main button = X (Twitter); RU: main button = Telegram -->
+          <div class="only-en">
+            <div class="cta-row">
+              <a class="btn btn-solid" href="https://x.com/polinasherr" target="_blank" rel="noopener">DM me on X (Twitter) ↗</a>
+              <a class="btn btn-ghost" href="https://boosty.to/plina_sherr" target="_blank" rel="noopener">Boosty ↗</a>
+            </div>
+            <div class="socials">
+              <a href="https://instagram.com/plina_sherr" target="_blank" rel="noopener"><small>Instagram</small>@plina_sherr</a>
+              <a href="https://tiktok.com/@polina_sherr" target="_blank" rel="noopener"><small>TikTok</small>@polina_sherr</a>
+              <a href="https://t.me/plina_sherr" target="_blank" rel="noopener"><small>Telegram</small>@plina_sherr</a>
+            </div>
+          </div>
+          <div class="only-ru">
+            <a class="btn btn-solid" href="https://t.me/plina_sherr" target="_blank" rel="noopener">Написать в&nbsp;Telegram ↗</a>
+            <div class="socials">
+              <a href="https://instagram.com/plina_sherr" target="_blank" rel="noopener"><small>Instagram</small>@plina_sherr</a>
+              <a href="https://x.com/polinasherr" target="_blank" rel="noopener"><small>X</small>@polinasherr</a>
+              <a href="https://tiktok.com/@polina_sherr" target="_blank" rel="noopener"><small>TikTok</small>@polina_sherr</a>
+              <a href="https://boosty.to/plina_sherr" target="_blank" rel="noopener"><small>Boosty</small>plina_sherr</a>
+            </div>
           </div>
         </div>
       </div>
