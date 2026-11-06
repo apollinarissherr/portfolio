@@ -792,9 +792,41 @@
     if (wasOpen) document.getElementById("works").scrollIntoView();
   });
 
-  layout();
-  window.addEventListener("load", layout);
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(layout);
+  /* ---------- keep the scroll position on reload ----------
+     The gallery height is calculated by the script and fonts load later,
+     so the browser's own restore lands in the wrong place. We save the position
+     (and whether "Show all works" was open) and restore it after the layout is final. */
+  var SCROLL_KEY = "sherr-scroll";
+  var restoreY = null, userMoved = false;
+  try {
+    var nav0 = performance.getEntriesByType && performance.getEntriesByType("navigation")[0];
+    var navType = nav0 ? nav0.type : (performance.navigation && performance.navigation.type === 1 ? "reload" : "navigate");
+    var st = JSON.parse(sessionStorage.getItem(SCROLL_KEY) || "null");
+    if (st && typeof st.y === "number" && (navType === "reload" || navType === "back_forward")) {
+      restoreY = st.y;
+      if (st.all) { grid.classList.add("all"); renderMoreBtn(); }
+    }
+  } catch (e) {}
+  if (restoreY !== null && "scrollRestoration" in history) history.scrollRestoration = "manual";
+  function restoreScroll() {
+    if (restoreY === null || userMoved) return;
+    /* "instant": the page has smooth scrolling, which would visibly roll the page on reload */
+    try { window.scrollTo({ top: restoreY, left: 0, behavior: "instant" }); }
+    catch (e) { window.scrollTo(0, restoreY); }
+  }
+  ["wheel", "touchstart", "keydown", "mousedown"].forEach(function (ev) {
+    window.addEventListener(ev, function () { userMoved = true; }, { passive: true, once: true });
+  });
+  window.addEventListener("pagehide", function () {
+    try {
+      sessionStorage.setItem(SCROLL_KEY, JSON.stringify({ y: window.scrollY, all: grid.classList.contains("all") }));
+    } catch (e) {}
+  });
+
+  function relayout() { layout(); restoreScroll(); }
+  relayout();
+  window.addEventListener("load", relayout);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(relayout);
   var rz;
   window.addEventListener("resize", function () { clearTimeout(rz); rz = setTimeout(layout, 100); });
 
